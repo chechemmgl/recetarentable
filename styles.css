@@ -117,18 +117,16 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.
   transition: background 300ms var(--ease-out), box-shadow 300ms var(--ease-out);
 }
 .nav__inner { display: flex; align-items: center; gap: 28px; padding-block: 18px; }
-.nav__logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 700; font-size: var(--text-md); color: var(--cream); transition: color 300ms; }
-.nav__logo small { display: block; font-family: var(--font-body); font-weight: 400; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.7; }
+.nav__logo { display: flex; align-items: center; gap: 12px; font-family: var(--font-display); font-weight: 700; font-size: var(--text-md); color: var(--cream); transition: color 300ms; }
+.nav__logo-text { line-height: 1; }
 
-/* Logo image: swaps light (dark bg) / dark (cream bg) with nav scroll.
-   If the file is missing, .logo-missing hides the marks and the text shows. */
-.nav__logo-mark { display: inline-flex; align-items: center; }
-.nav__logo-mark .mark { height: 38px; width: auto; display: block; }
+/* Modo Repostera logo chip — rounded so the logo's own solid background
+   reads as an intentional badge. Swaps light (dark bg) / dark (cream bg). */
+.nav__logo-mark { display: inline-flex; align-items: center; border-radius: 9px; overflow: hidden; }
+.nav__logo-mark .mark { height: 40px; width: auto; display: block; }
 .nav__logo-mark .mark--dark { display: none; }
 .nav.scrolled .nav__logo-mark .mark--light { display: none; }
 .nav.scrolled .nav__logo-mark .mark--dark { display: block; }
-.nav__logo.logo-missing .nav__logo-mark { display: none; }
-.nav__logo:not(.logo-missing) .nav__logo-text { display: none; }
 .nav__links { display: flex; gap: 24px; margin-left: auto; }
 .nav__links a { font-size: var(--text-sm); font-weight: 500; color: rgba(247,242,232,0.82); transition: color 300ms; }
 .nav__links a:hover { color: var(--cream); }
@@ -309,7 +307,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.
 
 /* ---------- FOOTER ---------- */
 .footer__grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; padding-block: 64px 32px; }
-.footer__logo { height: 84px; width: auto; display: block; }
+.footer__logo { height: 112px; width: auto; display: block; border-radius: 16px; }
 .footer__brand strong { font-family: var(--font-display); font-size: var(--text-lg); }
 .footer__brand .script { font-size: 26px; color: var(--terracotta-light); display: block; margin-top: 6px; }
 .footer h4 { font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; color: rgba(247,242,232,0.6); }

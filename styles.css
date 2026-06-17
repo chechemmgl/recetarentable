@@ -120,10 +120,9 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.
 .nav__logo { display: flex; align-items: center; gap: 12px; font-family: var(--font-display); font-weight: 700; font-size: var(--text-md); color: var(--cream); transition: color 300ms; }
 .nav__logo-text { line-height: 1; }
 
-/* Modo Repostera logo chip — rounded so the logo's own solid background
-   reads as an intentional badge. Swaps light (dark bg) / dark (cream bg). */
-.nav__logo-mark { display: inline-flex; align-items: center; border-radius: 9px; overflow: hidden; }
-.nav__logo-mark .mark { height: 40px; width: auto; display: block; }
+/* Modo Repostera isotipo (transparent SVG). Swaps white (dark bg) / color (cream bg). */
+.nav__logo-mark { display: inline-flex; align-items: center; }
+.nav__logo-mark .mark { height: 36px; width: auto; display: block; }
 .nav__logo-mark .mark--dark { display: none; }
 .nav.scrolled .nav__logo-mark .mark--light { display: none; }
 .nav.scrolled .nav__logo-mark .mark--dark { display: block; }
@@ -307,7 +306,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.
 
 /* ---------- FOOTER ---------- */
 .footer__grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; padding-block: 64px 32px; }
-.footer__logo { height: 112px; width: auto; display: block; border-radius: 16px; }
+.footer__logo { height: 104px; width: auto; display: block; }
 .footer__brand strong { font-family: var(--font-display); font-size: var(--text-lg); }
 .footer__brand .script { font-size: 26px; color: var(--terracotta-light); display: block; margin-top: 6px; }
 .footer h4 { font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; color: rgba(247,242,232,0.6); }

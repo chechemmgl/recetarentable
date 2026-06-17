@@ -35,7 +35,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.
 .bg-cream-dark { background: var(--cream-dark); }
 .bg-chocolate  { background: var(--chocolate); color: var(--cream); }
 .bg-dark       { background: var(--hero-bg); color: var(--cream); position: relative; }
-.bg-footer     { background: var(--chocolate-deep); color: var(--cream); }
+.bg-footer     { background: var(--terracotta); color: var(--cream); }
 
 /* Grain overlay para fondos oscuros */
 .grain::before {
@@ -117,12 +117,34 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.
   transition: background 300ms var(--ease-out), box-shadow 300ms var(--ease-out);
 }
 .nav__inner { display: flex; align-items: center; gap: 28px; padding-block: 18px; }
-.nav__logo { display: flex; align-items: center; gap: 12px; font-family: var(--font-display); font-weight: 700; font-size: var(--text-md); color: var(--cream); transition: color 300ms; }
-.nav__logo-text { line-height: 1; }
+.nav__logo { display: flex; align-items: center; gap: 11px; }
 
-/* Modo Repostera isotipo (transparent SVG). Swaps white (dark bg) / color (cream bg). */
-.nav__logo-mark { display: inline-flex; align-items: center; }
-.nav__logo-mark .mark { height: 36px; width: auto; display: block; }
+/* "RecetaRentable by" — script (Great Vibes) igual que "repostera" */
+.nav__rr { display: inline-flex; align-items: baseline; gap: 7px; }
+.nav__rr-name { font-family: var(--font-script); font-weight: 400; font-size: 30px; line-height: 1; color: var(--cream); transition: color 300ms; }
+.nav__rr-by { font-family: var(--font-body); font-weight: 400; font-size: 12px; color: rgba(247,242,232,0.7); transition: color 300ms; }
+.nav.scrolled .nav__rr-name { color: var(--chocolate); }
+.nav.scrolled .nav__rr-by { color: var(--chocolate-muted); }
+
+/* Brand lockup: isotipo a color + nombre en texto (color controlado por contexto). */
+.brandlock { display: inline-flex; flex-direction: column; align-items: center; gap: 5px; }
+.brandlock__iso { width: auto; display: block; }
+.brandlock__name { display: flex; flex-direction: column; align-items: center; line-height: 0.85; }
+.brandlock__modo { font-family: var(--font-body); font-weight: 600; text-transform: uppercase; letter-spacing: 0.28em; text-indent: 0.28em; }
+.brandlock__rep { font-family: var(--font-script); font-weight: 400; }
+
+.brandlock--nav .brandlock__iso { height: 42px; }
+.brandlock--nav .brandlock__modo { font-size: 11px; }
+.brandlock--nav .brandlock__rep { font-size: 23px; margin-top: -3px; }
+
+.brandlock--footer .brandlock__iso { height: 88px; }
+.brandlock--footer .brandlock__modo { font-size: 18px; }
+.brandlock--footer .brandlock__rep { font-size: 42px; margin-top: -5px; }
+
+/* Color de las letras según el fondo */
+.nav .brandlock__name { color: var(--cream); transition: color 300ms; }
+.nav.scrolled .brandlock__name { color: var(--chocolate); }
+.footer .brandlock__name { color: var(--cream); }
 .nav__logo-mark .mark--dark { display: none; }
 .nav.scrolled .nav__logo-mark .mark--light { display: none; }
 .nav.scrolled .nav__logo-mark .mark--dark { display: block; }
@@ -254,7 +276,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.
 .beforeafter { display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: center; }
 .ba { position: relative; aspect-ratio: 3/4; border-radius: var(--radius-md); overflow: hidden; }
 .ba--before { background-image: url('assets/photos/before-cake.jpg'), linear-gradient(135deg, var(--chocolate-light), var(--chocolate-muted)); background-size: cover, cover; background-position: center, center; filter: brightness(0.65) saturate(0.5); }
-.ba--after { background-image: url('assets/photos/after-cake.jpg'), linear-gradient(135deg, var(--terracotta-light), var(--terracotta)); background-size: cover, cover; background-position: center, center; border: 2px solid var(--terracotta); }
+.ba--after { background-image: url('assets/photos/after-cake.png'), linear-gradient(135deg, var(--terracotta-light), var(--terracotta)); background-size: cover, cover; background-position: center, center; border: 2px solid var(--terracotta); }
 .ba__label { position: absolute; top: 12px; left: 12px; background: rgba(28,13,4,0.7); color: var(--cream); font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: var(--radius-pill); }
 .ba__arrow { font-size: 24px; color: var(--terracotta-light); }
 .packages { display: flex; flex-direction: column; gap: 14px; margin-top: 32px; }
@@ -276,8 +298,8 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.
 
 /* ---------- ORIGEN ---------- */
 .origin { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 48px; align-items: start; }
-.origin__avatar { width: 96px; height: 96px; border-radius: 50%; background: linear-gradient(135deg, var(--terracotta), var(--terracotta-dark)); display: grid; place-items: center; margin-bottom: 20px; }
-.origin__avatar svg { width: 46px; height: 46px; color: var(--cream); }
+.origin__photo { margin-bottom: 24px; }
+.origin__photo img { width: 100%; max-width: 300px; aspect-ratio: 4/5; object-fit: cover; object-position: center top; border-radius: var(--radius-lg); display: block; box-shadow: var(--shadow-lg); }
 .origin__story p { font-size: var(--text-md); font-weight: 300; margin-bottom: 16px; color: var(--chocolate-light); }
 .origin__sign { font-weight: 600; color: var(--chocolate); }
 .countries { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
@@ -300,13 +322,36 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.
 .bg-dark .form-note { color: rgba(247,242,232,0.55); }
 
 /* ---------- CTA FINAL ---------- */
-.final { text-align: center; position: relative; z-index: 2; }
-.final h2 { font-size: var(--text-3xl); max-width: 16em; margin: 0 auto 18px; }
+#waitlist { overflow: hidden; }
+.final__photo {
+  position: absolute; right: 0; top: 0; bottom: 0; width: 50%;
+  background-image: url('assets/photos/cta-cake.jpg'), linear-gradient(135deg, var(--chocolate-light), var(--chocolate-deep));
+  background-size: cover, cover; background-position: center, center; background-repeat: no-repeat, no-repeat;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.5) 28%, black 68%);
+  mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.5) 28%, black 68%);
+  opacity: 0.62; z-index: 1;
+}
+.final { text-align: left; position: relative; z-index: 2; max-width: 600px; }
+.final .eyebrow.center { text-align: left; margin-left: 0; }
+.final h2 { font-size: var(--text-3xl); max-width: 14em; margin: 0 0 18px; }
 .final p { font-size: var(--text-md); font-weight: 300; color: rgba(247,242,232,0.78); margin-bottom: 30px; }
+.final .waitlist { text-align: left; padding: clamp(28px, 3vw, 38px); }
+.final .waitlist h3, .final .waitlist p { text-align: left; }
+.final .form-row { max-width: 100%; margin-inline: 0; flex-wrap: wrap; }
+.final .form-row input { min-width: 0; flex: 1 1 200px; }
+.final .form-row .btn { flex: 0 0 auto; }
+@media (max-width: 768px) {
+  .final__photo { width: 100%; height: 38%; bottom: auto; -webkit-mask-image: linear-gradient(180deg, black 35%, transparent 92%); mask-image: linear-gradient(180deg, black 35%, transparent 92%); opacity: 0.3; }
+  .final { max-width: none; text-align: center; padding-top: 24%; }
+  .final .eyebrow.center { text-align: center; margin-inline: auto; }
+  .final h2 { margin-inline: auto; }
+  .final .waitlist { text-align: center; }
+  .final .form-row { margin-inline: auto; }
+}
 
 /* ---------- FOOTER ---------- */
 .footer__grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; padding-block: 64px 32px; }
-.footer__logo { height: 104px; width: auto; display: block; }
+.footer__logo { height: 160px; width: auto; display: block; }
 .footer__brand strong { font-family: var(--font-display); font-size: var(--text-lg); }
 .footer__brand .script { font-size: 26px; color: var(--terracotta-light); display: block; margin-top: 6px; }
 .footer h4 { font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; color: rgba(247,242,232,0.6); }

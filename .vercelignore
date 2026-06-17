@@ -1,6 +1,7 @@
 # Only ship the web assets. Keep strategy/ops files private.
 *.md
 references/
+_source/
 memory/
 .claude/
 landing-page-brief.md

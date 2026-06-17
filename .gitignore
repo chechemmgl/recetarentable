@@ -2,6 +2,7 @@
 .claude/
 memory/
 references/
+_source/
 *.md
 
 # OS / editor noise

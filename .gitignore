@@ -1,0 +1,9 @@
+# Ops / strategy / memory — never publish to the repo or the web
+.claude/
+memory/
+references/
+*.md
+
+# OS / editor noise
+.DS_Store
+Thumbs.db

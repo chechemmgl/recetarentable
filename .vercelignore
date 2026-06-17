@@ -1,0 +1,10 @@
+# Only ship the web assets. Keep strategy/ops files private.
+*.md
+references/
+memory/
+.claude/
+landing-page-brief.md
+brand.md
+principles.md
+TASTE.md
+campaign-map.md

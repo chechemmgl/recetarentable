@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RecetaRentable · ¿Cuánto te costó hacer ese pastel de verdad?</title>
+  <meta name="description" content="Calcula el precio de venta real de cualquier receta desde una foto, con precios de supermercado de tu país. Por Modo Repostera." />
+
+  <!-- Open Graph / link sharing -->
+  <meta property="og:title" content="RecetaRentable · by Modo Repostera" />
+  <meta property="og:description" content="Sube la foto de tu receta y descubre en segundos cuánto te costó de verdad y cuánto deberías cobrar." />
+  <meta property="og:type" content="website" />
+  <!-- [PLACEHOLDER] reemplazar con URL absoluta tras deploy -->
+  <meta property="og:image" content="assets/photos/hero-cake.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===== NAV ===== -->
+  <header class="nav">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="#top">RecetaRentable<small>by Modo Repostera</small></a>
+      <nav class="nav__links">
+        <a href="#how" data-i18n="nav.how">Cómo funciona</a>
+        <a href="#plans" data-i18n="nav.plans">Planes</a>
+        <a href="#brandshot" data-i18n="nav.brandshot">BrandShot</a>
+      </nav>
+      <div class="nav__actions">
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button data-lang="es" class="active">ES</button>
+          <button data-lang="en">EN</button>
+        </div>
+        <a class="btn btn--primary btn--sm" data-cta="tool" href="#" data-i18n="nav.cta">Calcular mi primera receta →</a>
+        <button class="nav__burger" aria-label="Menú"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- mobile menu -->
+  <div class="mobile-menu">
+    <a href="#how" data-i18n="nav.how">Cómo funciona</a>
+    <a href="#plans" data-i18n="nav.plans">Planes</a>
+    <a href="#brandshot" data-i18n="nav.brandshot">BrandShot</a>
+    <a href="#waitlist" data-i18n="nav.cta">Calcular mi primera receta →</a>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero bg-dark grain" id="top">
+    <div class="hero__photo" data-img="hero-cake" aria-hidden="true"></div>
+    <div class="container hero__grid">
+      <div class="hero__copy">
+        <span class="tag fade d0" data-i18n="hero.tag">✦ Herramienta de costeo para reposteras</span>
+        <h1 class="hero__headline fade d1">
+          <span data-i18n="hero.h1a">¿Cuánto te costó hacer</span>
+          <em data-i18n="hero.h1b">ese pastel de verdad?</em>
+        </h1>
+        <p class="hero__sub fade d2" data-i18n="hero.sub">Sube la foto de tu receta, dinos tu país — y en segundos tienes el costo real, el precio que deberías cobrar, y el desglose completo. Con precios de supermercados donde tú vives.</p>
+        <div class="hero__actions fade d3">
+          <a class="btn btn--primary btn--lg" data-cta="tool" href="#" data-i18n="hero.cta1">Calcular mi primera receta gratis →</a>
+          <a class="btn btn--ghost-light btn--lg" href="#how" data-i18n="hero.cta2">Ver cómo funciona</a>
+        </div>
+        <p class="hero__microcopy fade d3" data-i18n="hero.micro">Sin registrarte. Sin tarjeta. Solo la foto de tu receta.</p>
+        <div class="hero__proof fade d4">
+          <span class="flags">🇻🇪🇲🇽🇨🇴🇦🇷</span>
+          <span data-i18n="hero.proof">Usado por reposteras en +12 países · Resultados en menos de 60 segundos</span>
+        </div>
+      </div>
+
+      <!-- App mockup card -->
+      <div class="mockup fade dm" aria-hidden="true">
+        <div class="mockup__bar">
+          <span>🧁</span>
+          <strong data-i18n="mock.title">RecetaRentable</strong>
+          <span class="status" data-i18n="mock.status">Analizando…</span>
+        </div>
+        <div class="mockup__photo">🎂</div>
+        <div class="mockup__rows">
+          <div class="mockup__row"><span data-i18n="mock.ingredients">Ingredientes</span><span>$4.20</span></div>
+          <div class="mockup__row"><span data-i18n="mock.labor">Mano de obra</span><span>$6.00</span></div>
+          <div class="mockup__row"><span data-i18n="mock.packaging">Empaque</span><span>$1.50</span></div>
+          <div class="mockup__row total"><span data-i18n="mock.total">Costo total</span><span>$11.70</span></div>
+          <div class="mockup__row sell"><span data-i18n="mock.sell">Precio de venta</span><span>$28</span></div>
+          <a class="btn btn--primary btn--full btn--sm" data-cta="tool" href="#" data-i18n="mock.download">Descargar desglose</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROBLEMA ===== -->
+  <section class="section bg-cream-dark" id="problem">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow" data-i18n="problem.eyebrow">El problema</span>
+        <h2 data-i18n="problem.h2">Cobrar “lo que te parece” tiene un costo que no ves</h2>
+        <p data-i18n="problem.intro">Cada vez que vendes un postre sin saber exactamente cuánto te costó hacerlo, hay tres cosas que pueden estar pasando:</p>
+      </div>
+      <div class="problem__grid">
+        <div class="pain reveal">
+          <h3 data-i18n="problem.p1t">Estás cobrando de menos</h3>
+          <p data-i18n="problem.p1">y tu tiempo, tu gas, tu empaque y tus ingredientes están saliendo de tu bolsillo.</p>
+        </div>
+        <div class="pain reveal">
+          <h3 data-i18n="problem.p2t">Estás cobrando de más por miedo</h3>
+          <p data-i18n="problem.p2">y pierdes clientes que sí hubieran pagado el precio justo.</p>
+        </div>
+        <div class="pain reveal">
+          <h3 data-i18n="problem.p3t">No sabes cuál producto te deja más ganancia</h3>
+          <p data-i18n="problem.p3">así que sigues haciendo el que más te piden, no el que más te conviene.</p>
+        </div>
+      </div>
+      <p class="problem__close reveal">
+        <span class="muted" data-i18n="problem.bridge1">El problema no es que no sepas cobrar. Es que nadie te dio una herramienta hecha para tu tipo de negocio, en tu país, con tus ingredientes reales.</span><br><br>
+        <span class="italic-accent" data-i18n="problem.bridge2">RecetaRentable es esa herramienta.</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== CÓMO FUNCIONA ===== -->
+  <section class="section dot-grid" id="how">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow" data-i18n="how.eyebrow">Cómo funciona</span>
+        <h2><span data-i18n="how.h2a">De la foto a tu precio.</span> <em class="italic-accent" data-i18n="how.h2b">En menos de 60 segundos.</em></h2>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <span class="step__num">1</span>
+          <div class="step__icon">📸</div>
+          <h3 data-i18n="how.s1t">Sube la foto de tu receta</h3>
+          <p data-i18n="how.s1">Puede ser una hoja escrita a mano, una captura de pantalla, un PDF o la foto de tu cuaderno. El sistema la lee y extrae los ingredientes automáticamente.</p>
+        </div>
+        <div class="step reveal">
+          <span class="step__num">2</span>
+          <div class="step__icon">🌎</div>
+          <h3 data-i18n="how.s2t">Dinos en qué país estás</h3>
+          <p data-i18n="how.s2">RecetaRentable busca los precios actuales de tus ingredientes en los supermercados de tu ciudad. No promedios genéricos — precios reales de donde tú vives.</p>
+        </div>
+        <div class="step reveal">
+          <span class="step__num">3</span>
+          <div class="step__icon">📊</div>
+          <h3 data-i18n="how.s3t">Recibe tu análisis completo</h3>
+          <p data-i18n="how.s3">Costo por porción, costo total, mano de obra, empaque, gastos indirectos — y el precio de venta que deberías cobrar para ganar de verdad.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LO QUE RECIBES ===== -->
+  <section class="section bg-cream" id="deliverables">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow" data-i18n="del.eyebrow">Lo que recibes</span>
+        <h2 data-i18n="del.h2">No solo un número. Un sistema completo para tu negocio.</h2>
+      </div>
+      <div class="deliverables">
+        <div class="deliverable deliverable--featured reveal">
+          <div class="deliverable__icon">💰</div>
+          <h3 data-i18n="del.d1t">Tu precio real</h3>
+          <p data-i18n="del.d1">El costo exacto de cada receta, calculado con ingredientes, tu tiempo, el empaque y los gastos de tu negocio. Nada inventado, todo basado en precios actuales de tu país.</p>
+        </div>
+        <div class="deliverable reveal">
+          <div class="deliverable__icon">📄</div>
+          <h3 data-i18n="del.d2t">Desglose descargable</h3>
+          <p data-i18n="del.d2">Recibe tu análisis en PDF y Excel con fórmulas vivas. Si el precio de un ingrediente sube, actualizas un número y todo se recalcula solo.</p>
+        </div>
+        <div class="deliverable reveal">
+          <div class="deliverable__icon">🎨</div>
+          <h3 data-i18n="del.d3t">Tu menú listo para publicar</h3>
+          <p data-i18n="del.d3">Un diseño visual con tus productos y precios reales, listo para compartir en Instagram o WhatsApp. Hecho automáticamente, con tu nombre y estilo.</p>
+        </div>
+        <div class="deliverable reveal">
+          <div class="deliverable__icon">🔄</div>
+          <h3 data-i18n="del.d4t">Actualización cuando cambien los precios</h3>
+          <p data-i18n="del.d4">¿Subió la harina? ¿Cambió el precio de la mantequilla? Vuelves, actualizas y tu menú se regenera. Tu negocio siempre con precios al día.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PLANES ===== -->
+  <section class="section bg-cream-dark" id="plans">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow" data-i18n="plans.eyebrow">Planes y precios</span>
+        <h2 data-i18n="plans.h2">Elige cómo empezar</h2>
+        <p data-i18n="plans.sub">Todos los precios en USD · Pagos seguros · Cancela cuando quieras</p>
+      </div>
+      <div class="pricing__grid">
+
+        <!-- Gratuito -->
+        <div class="plan reveal">
+          <div class="plan__name" data-i18n="plans.freeName">Gratuito</div>
+          <div class="plan__tagline" data-i18n="plans.freeTag">Pruébalo sin comprometerte</div>
+          <div class="plan__price">$0</div>
+          <div class="plan__note"></div>
+          <ul>
+            <li><span class="ic yes">✓</span><span data-i18n="plans.freeF1">1 análisis completo de receta</span></li>
+            <li><span class="ic yes">✓</span><span data-i18n="plans.freeF2">Resultado en pantalla: costo real + precio sugerido</span></li>
+            <li class="off"><span class="ic no">✕</span><span data-i18n="plans.freeF3">Sin descarga</span></li>
+            <li><span class="ic yes">✓</span><span data-i18n="plans.freeF4">Sin registro · Sin tarjeta</span></li>
+          </ul>
+          <a class="btn btn--ghost btn--full btn--md" data-cta="tool" href="#" data-i18n="plans.freeCta">Calcular mi receta gratis →</a>
+        </div>
+
+        <!-- Por receta -->
+        <div class="plan reveal">
+          <div class="plan__name" data-i18n="plans.perName">Por receta</div>
+          <div class="plan__tagline" data-i18n="plans.perTag">Paga solo cuando lo necesitas</div>
+          <div class="plan__price"><span data-i18n="plans.perPrice">$2.99</span> <small data-i18n="plans.perUnit">USD por receta</small></div>
+          <div class="plan__note"></div>
+          <ul>
+            <li><span class="ic yes">✓</span><span data-i18n="plans.perF1">Desglose completo (ingredientes + mano de obra + empaque + gastos indirectos)</span></li>
+            <li><span class="ic yes">✓</span><span data-i18n="plans.perF2">PDF descargable</span></li>
+            <li><span class="ic yes">✓</span><span data-i18n="plans.perF3">Excel con fórmulas vivas</span></li>
+            <li><span class="ic yes">✓</span><span data-i18n="plans.perF4">Válido para cualquier país</span></li>
+          </ul>
+          <a class="btn btn--dark btn--full btn--md" data-cta="plan" href="#" data-i18n="plans.perCta">Comprar análisis →</a>
+        </div>
+
+        <!-- Mensual (featured) -->
+        <div class="plan plan--featured reveal">
+          <span class="plan__badge" data-i18n="plans.monthBadge">Recomendado</span>
+          <div class="plan__name" data-i18n="plans.monthName">Mensual</div>
+          <div class="plan__tagline" data-i18n="plans.monthTag">Para las que venden seguido</div>
+          <div class="plan__price">$12 <small data-i18n="plans.monthUnit">USD / mes</small></div>
+          <div class="plan__note"></div>
+          <ul>
+            <li><span class="ic yes">✓</span><span data-i18n="plans.monthF1">Recetas ilimitadas</span></li>
+            <li><span class="ic yes">✓</span><span data-i18n="plans.monthF2">Historial guardado</span></li>
+            <li><span class="ic yes">✓</span><span data-i18n="plans.monthF3">PDF + Excel siempre disponibles</span></li>
+            <li><span class="ic yes">✓</span><span data-i18n="plans.monthF4">Menú visual en Canva incluido</span></li>
+            <li><span class="ic yes">✓</span><span data-i18n="plans.monthF5">Soporte por WhatsApp</span></li>
+            <li><span class="ic yes">✓</span><span data-i18n="plans.monthF6">Cancela cuando quieras</span></li>
+          </ul>
+          <a class="btn btn--primary btn--full btn--md" data-cta="plan" href="#" data-i18n="plans.monthCta">Empezar plan mensual →</a>
+        </div>
+
+        <!-- Anual -->
+        <div class="plan reveal">
+          <div class="plan__name" data-i18n="plans.yearName">Anual</div>
+          <div class="plan__tagline" data-i18n="plans.yearTag">El sistema completo</div>
+          <div class="plan__price">$89 <small data-i18n="plans.yearUnit">USD / año</small></div>
+          <div class="plan__note" data-i18n="plans.yearNote">Equivale a $7.40/mes — ahorras 38%</div>
+          <ul>
+            <li><span class="ic yes">✓</span><span data-i18n="plans.yearF1">Todo lo del plan mensual</span></li>
+            <li><span class="ic yes">✓</span><span data-i18n="plans.yearF2">Alertas cuando suban los precios de tus ingredientes</span></li>
+            <li><span class="ic yes">✓</span><span data-i18n="plans.yearF3">Actualizaciones de producto incluidas</span></li>
+            <li><span class="ic yes">✓</span><span data-i18n="plans.yearF4">Prioridad en soporte</span></li>
+          </ul>
+          <a class="btn btn--dark btn--full btn--md" data-cta="plan" href="#" data-i18n="plans.yearCta">Quiero el plan anual →</a>
+        </div>
+      </div>
+      <p class="pricing__micro micro" data-i18n="plans.guarantee">Todos los pagos son seguros. Puedes cancelar cuando quieras. Si no estás satisfecha en los primeros 7 días, te devolvemos tu dinero — sin preguntas.</p>
+    </div>
+  </section>
+
+  <!-- ===== BRANDSHOT ===== -->
+  <section class="section bg-chocolate" id="brandshot">
+    <div class="container brandshot__inner">
+      <div>
+        <span class="eyebrow" data-i18n="bs.eyebrow">BrandShot by Modo Repostera</span>
+        <h2 data-i18n="bs.h2">¿Ya tienes tu precio? Ahora haz que tus fotos lo valgan.</h2>
+        <p class="section-head" data-i18n="bs.p1" style="margin:18px 0 0;max-width:none;">Calcular bien tu precio es el primer paso. El segundo es que tu postre se vea tan bueno como sabe.</p>
+        <p class="section-head" data-i18n="bs.p2" style="margin:14px 0 0;max-width:none;">Con BrandShot tomas la foto con tu celular — sin producción, sin luz profesional, sin fondo especial — y nosotras la transformamos en una imagen de catálogo lista para Instagram, tu menú o tu WhatsApp Business.</p>
+        <p class="lead italic-accent" data-i18n="bs.p3" style="margin-top:16px;">IA + criterio visual + entrega en 48 horas.</p>
+
+        <div class="packages">
+          <div class="package reveal">
+            <span class="package__price">$18</span>
+            <div class="package__body"><strong data-i18n="bs.pk1n">Básico</strong><span data-i18n="bs.pk1d">3 fotos producidas — para empezar a mostrar tu trabajo como se merece.</span></div>
+            <a class="btn btn--ghost-light btn--sm" data-cta="plan" href="#" data-i18n="bs.pkCta">Ver ejemplos →</a>
+          </div>
+          <div class="package reveal">
+            <span class="package__price">$45</span>
+            <div class="package__body"><strong data-i18n="bs.pk2n">Estándar</strong><span data-i18n="bs.pk2d">10 fotos + 2 fondos a elegir — para renovar tu feed o lanzar un producto.</span></div>
+            <a class="btn btn--ghost-light btn--sm" data-cta="plan" href="#" data-i18n="bs.pkCta">Ver ejemplos →</a>
+          </div>
+          <div class="package reveal">
+            <span class="package__price">$90</span>
+            <div class="package__body"><strong data-i18n="bs.pk3n">Premium</strong><span data-i18n="bs.pk3d">10 fotos + reel de producto + video corto — cuando quieres lanzar con todo.</span></div>
+            <a class="btn btn--soft btn--sm" data-cta="plan" href="#" data-i18n="bs.pkCta">Ver ejemplos →</a>
+          </div>
+        </div>
+        <p class="micro" style="margin-top:18px;" data-i18n="bs.micro">Mandas la foto — nosotras hacemos el resto. Entrega en 48 horas por WhatsApp o email.</p>
+      </div>
+
+      <div class="beforeafter reveal">
+        <div class="ba ba--before"><span class="ba__label" data-i18n="bs.beforeLabel">Antes</span></div>
+        <span class="ba__arrow">→</span>
+        <div class="ba ba--after"><span class="ba__label" data-i18n="bs.afterLabel">Después</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section bg-cream" id="faq">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow" data-i18n="faq.eyebrow">Preguntas frecuentes</span>
+        <h2 data-i18n="faq.h2">Lo que seguro te estás preguntando</h2>
+      </div>
+      <div class="faq">
+        <div class="faq__item">
+          <button class="faq__q" aria-expanded="false"><span data-i18n="faq.q1">¿Funciona para mi país?</span><span class="faq__icon">+</span></button>
+          <div class="faq__a"><p data-i18n="faq.a1">Sí. RecetaRentable busca precios en supermercados locales de más de 15 países de América Latina, España y Estados Unidos. Si tu país no aparece, puedes ingresar los precios manualmente y el sistema hace el resto.</p></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q" aria-expanded="false"><span data-i18n="faq.q2">¿Necesito saber de Excel o diseño?</span><span class="faq__icon">+</span></button>
+          <div class="faq__a"><p data-i18n="faq.a2">No. Solo subes la foto, confirmas los ingredientes que el sistema leyó, y recibes todo listo. El Excel tiene fórmulas ya integradas — no necesitas tocar nada.</p></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q" aria-expanded="false"><span data-i18n="faq.q3">¿Qué pasa si mi receta está escrita a mano?</span><span class="faq__icon">+</span></button>
+          <div class="faq__a"><p data-i18n="faq.a3">El sistema lee texto manuscrito. Si algo no queda claro, te lo pregunta antes de calcular. Nunca asume — siempre confirma.</p></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q" aria-expanded="false"><span data-i18n="faq.q4">¿Es exacto el precio de los ingredientes?</span><span class="faq__icon">+</span></button>
+          <div class="faq__a"><p data-i18n="faq.a4">Buscamos precios en tiendas reales de tu país. Son precios referenciales actualizados — te los mostramos antes de calcular para que puedas corregir si tienes un precio diferente en tu tienda habitual.</p></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q" aria-expanded="false"><span data-i18n="faq.q5">¿Sirve si vendo tortas, galletas, catering y más?</span><span class="faq__icon">+</span></button>
+          <div class="faq__a"><p data-i18n="faq.a5">Sí. Puedes cargar todas las recetas de tu negocio, con distintos márgenes por producto si lo necesitas.</p></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q" aria-expanded="false"><span data-i18n="faq.q6">¿Qué incluye el menú visual de Canva?</span><span class="faq__icon">+</span></button>
+          <div class="faq__a"><p data-i18n="faq.a6">Un diseño con el nombre de tu negocio, tus productos y sus precios de venta, listo para publicar. No es una plantilla genérica — se genera con tus datos reales y puedes editarlo después.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ORIGEN ===== -->
+  <section class="section bg-cream-dark" id="origin">
+    <div class="container origin">
+      <div>
+        <div class="origin__avatar" aria-hidden="true">👩‍🍳</div>
+        <span class="eyebrow" data-i18n="origin.eyebrow">Quién está detrás</span>
+        <h2 data-i18n="origin.h2">Hecho por una repostera, para reposteras.</h2>
+      </div>
+      <div class="origin__story">
+        <p data-i18n="origin.p1">Antes de RecetaRentable existió GL3 Catering. Y fue ahí donde descubrí que hacer postres deliciosos es solo una parte del negocio. La otra — la que nadie te enseña — es calcular bien tus precios, tener fotos que den ganas de pedir, y saber qué postre te deja más ganancia.</p>
+        <p data-i18n="origin.p2">Exploré herramientas de IA, las ajusté a la realidad de una repostera emprendedora, y poco a poco construí un proceso que funciona. Hoy decidí compartirlo.</p>
+        <p class="origin__sign" data-i18n="origin.sign">— María, Abqaiq, Arabia Saudita · Fundadora de Modo Repostera</p>
+
+        <div class="countries" aria-label="Países">
+          <span class="country-badge">🇻🇪 Venezuela</span>
+          <span class="country-badge">🇲🇽 México</span>
+          <span class="country-badge">🇨🇴 Colombia</span>
+          <span class="country-badge">🇦🇷 Argentina</span>
+          <span class="country-badge">🇨🇱 Chile</span>
+          <span class="country-badge">🇵🇪 Perú</span>
+          <span class="country-badge">🇪🇨 Ecuador</span>
+          <span class="country-badge">🇺🇸 EE.UU.</span>
+          <span class="country-badge">🇪🇸 España</span>
+          <span class="country-badge">🇸🇦 Arabia Saudita</span>
+          <span class="country-badge">🇧🇴 Bolivia</span>
+          <span class="country-badge">🇵🇦 Panamá</span>
+        </div>
+        <span class="placeholder-note" data-i18n="origin.placeholder">[PLACEHOLDER] Cifra de uso por confirmar antes del lanzamiento.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WAITLIST + CTA FINAL ===== -->
+  <section class="section bg-dark grain" id="waitlist">
+    <div class="container final">
+      <span class="eyebrow center" style="display:block;">Lista de espera</span>
+      <h2 data-i18n="final.h2">Tu receta ya está lista. Lo que falta es saber cuánto vale.</h2>
+      <p data-i18n="final.sub">Empieza gratis. Sin registro. Con la foto que tienes en tu teléfono ahora mismo.</p>
+
+      <div class="waitlist">
+        <h3 data-i18n="wl.h3">Sé de las primeras en usarla</h3>
+        <p data-i18n="wl.p">La herramienta está por lanzarse. Déjanos tu correo y te avisamos apenas esté lista.</p>
+        <!-- [PLACEHOLDER] Sustituir action por el endpoint de Formspree: https://formspree.io/f/XXXXXXX -->
+        <form id="waitlist-form" class="form" action="https://formspree.io/f/PLACEHOLDER" method="POST">
+          <div class="form-row">
+            <input type="email" name="email" required data-i18n-ph="wl.placeholder" placeholder="tu@correo.com" />
+            <button type="submit" class="btn btn--primary btn--md" data-i18n="wl.btn">Avisarme cuando esté lista</button>
+          </div>
+        </form>
+        <p class="form-note" data-i18n="wl.note">Serás de las primeras en usarla. Sin spam.</p>
+      </div>
+
+      <p class="micro" style="margin-top:26px;" data-i18n="final.micro">RecetaRentable · by Modo Repostera · Hecho por una repostera, para reposteras.</p>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="bg-footer footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <strong>RecetaRentable</strong>
+        <span class="script">by Modo Repostera</span>
+      </div>
+      <div>
+        <h4 data-i18n="footer.explore">Explora</h4>
+        <a href="#top" data-i18n="footer.l1">RecetaRentable</a>
+        <a href="#brandshot" data-i18n="footer.l2">BrandShot</a>
+        <a href="#how" data-i18n="footer.l3">Cómo funciona</a>
+        <a href="#faq" data-i18n="footer.l4">FAQ</a>
+      </div>
+      <div>
+        <h4 data-i18n="footer.contact">Contacto</h4>
+        <a href="https://instagram.com/modorepostera" target="_blank" rel="noopener">Instagram @modorepostera</a>
+        <!-- [PLACEHOLDER] número de WhatsApp -->
+        <a href="#" data-cta="plan">WhatsApp [PLACEHOLDER]</a>
+        <a href="mailto:hola@modorepostera.com">hola@modorepostera.com</a>
+        <a href="#" data-i18n="footer.privacy">Política de privacidad</a>
+        <a href="#" data-i18n="footer.terms">Términos de uso</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span data-i18n="footer.copy">© 2026 RecetaRentable · by Modo Repostera · Hecho con oficio.</span>
+    </div>
+  </footer>
+
+  <script src="i18n.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+/* kit.css — "Fotos que provocan" lead-magnet asset page.
+   Reuses tokens.css for all brand values. Light/cream theme, print-friendly. */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--text-base);
+  line-height: 1.65;
+  color: var(--chocolate);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.12; }
+
+.page { max-width: 880px; margin-inline: auto; padding: clamp(24px, 5vw, 56px) var(--gutter, 24px) 80px; }
+
+/* ---------- Top bar (web-only chrome) ---------- */
+.kit-bar {
+  display: flex; align-items: center; gap: 16px;
+  max-width: 880px; margin-inline: auto;
+  padding: 18px var(--gutter, 24px);
+}
+.kit-bar__brand { display: inline-flex; align-items: center; gap: 10px; }
+.kit-bar__iso { height: 38px; width: auto; display: block; }
+.kit-bar__name { display: flex; flex-direction: column; line-height: 0.85; color: var(--chocolate); }
+.kit-bar__modo { font-family: var(--font-body); font-weight: 600; text-transform: uppercase; letter-spacing: 0.26em; text-indent: 0.26em; font-size: 10px; }
+.kit-bar__rep { font-family: var(--font-script); font-weight: 400; font-size: 21px; margin-top: -2px; color: var(--terracotta); }
+.kit-bar__actions { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+
+.lang-toggle { display: inline-flex; gap: 2px; background: var(--cream-dark); padding: 3px; border-radius: var(--radius-pill); }
+.lang-toggle button {
+  border: none; background: transparent; cursor: pointer;
+  font-family: var(--font-body); font-weight: 600; font-size: 12px;
+  padding: 5px 12px; border-radius: var(--radius-pill); color: var(--chocolate-muted);
+  transition: background 200ms, color 200ms;
+}
+.lang-toggle button.active { background: var(--chocolate); color: var(--cream); }
+
+/* ---------- Welcome strip (web-only) ---------- */
+.welcome {
+  background: var(--pistachio-light); border-radius: var(--radius-lg);
+  padding: 18px 24px; margin-bottom: 36px;
+  font-size: var(--text-sm); color: var(--chocolate);
+}
+.welcome strong { font-weight: 600; }
+
+/* ---------- Document head ---------- */
+.kit-head { text-align: center; margin-bottom: 48px; }
+.eyebrow {
+  display: block; font-family: var(--font-body); font-size: var(--text-xs);
+  font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--terracotta); margin-bottom: 16px;
+}
+.kit-head h1 { font-size: var(--text-hero); margin-bottom: 18px; }
+.kit-head h1 em { font-style: italic; font-weight: 400; color: var(--terracotta); }
+.kit-head p { font-size: var(--text-md); font-weight: 300; color: var(--chocolate-light); max-width: 38em; margin-inline: auto; }
+
+/* ---------- Section blocks ---------- */
+.kit-section { margin-bottom: 56px; }
+.kit-section__head { margin-bottom: 28px; padding-bottom: 18px; border-bottom: 2px solid var(--cream-dark); }
+.kit-section__num { font-family: var(--font-script); font-size: 30px; color: var(--terracotta); display: block; line-height: 1; }
+.kit-section__head h2 { font-size: var(--text-2xl); margin-top: 4px; }
+.kit-section__head p { font-size: var(--text-sm); color: var(--chocolate-light); margin-top: 8px; max-width: 56ch; }
+
+/* ---------- Checklist ---------- */
+.check { display: flex; flex-direction: column; gap: 10px; }
+.check__item {
+  display: flex; gap: 14px; align-items: flex-start;
+  background: var(--cream); border: 1px solid var(--cream-dark);
+  border-radius: var(--radius-md); padding: 16px 18px;
+  cursor: pointer; transition: border-color 200ms, background 200ms;
+}
+.check__item:hover { border-color: var(--terracotta-light); }
+.check__box {
+  flex: 0 0 22px; width: 22px; height: 22px; margin-top: 1px;
+  border: 2px solid var(--chocolate-muted); border-radius: 6px;
+  display: grid; place-items: center; transition: background 180ms, border-color 180ms;
+}
+.check__box svg { width: 13px; height: 13px; color: var(--cream); opacity: 0; transition: opacity 160ms; }
+.check__item.done .check__box { background: var(--pistachio-dark); border-color: var(--pistachio-dark); }
+.check__item.done .check__box svg { opacity: 1; }
+.check__item.done .check__title { text-decoration: line-through; color: var(--chocolate-muted); }
+.check__text strong { display: block; font-family: var(--font-display); font-weight: 600; font-size: var(--text-md); margin-bottom: 3px; }
+.check__text .check__why { font-size: var(--text-sm); color: var(--chocolate-light); }
+
+.kit-tip {
+  margin-top: 16px; background: var(--cream-dark); border-radius: var(--radius-md);
+  padding: 14px 18px; font-size: var(--text-sm); color: var(--chocolate-light);
+}
+.kit-tip strong { color: var(--chocolate); }
+
+/* ---------- How to use (3 steps) ---------- */
+.howto { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 28px; }
+.howto__step { background: var(--cream); border: 1px solid var(--cream-dark); border-radius: var(--radius-md); padding: 18px; }
+.howto__n { font-family: var(--font-display); font-weight: 700; font-size: var(--text-xl); color: var(--terracotta); }
+.howto__step p { font-size: var(--text-sm); color: var(--chocolate-light); margin-top: 6px; }
+
+/* ---------- Prompt cards ---------- */
+.prompts { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.prompt {
+  background: var(--cream); border: 1px solid var(--cream-dark);
+  border-radius: var(--radius-lg); padding: 22px; display: flex; flex-direction: column;
+}
+.prompt__name { font-family: var(--font-display); font-weight: 700; font-size: var(--text-md); margin-bottom: 4px; }
+.prompt__when { font-size: var(--text-xs); color: var(--terracotta-dark); font-weight: 600; letter-spacing: 0.02em; margin-bottom: 14px; }
+.prompt__text {
+  font-family: var(--font-body); font-size: var(--text-sm); line-height: 1.55;
+  color: var(--chocolate-light); background: var(--cream-dark);
+  border-radius: var(--radius-md); padding: 14px 16px; flex: 1;
+}
+.prompt__text .token { color: var(--terracotta-dark); font-weight: 600; }
+.prompt__copy {
+  align-self: flex-start; margin-top: 14px;
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--font-body); font-weight: 600; font-size: 13px;
+  background: var(--chocolate); color: var(--cream);
+  border: none; border-radius: var(--radius-pill); padding: 9px 18px; cursor: pointer;
+  transition: background 200ms;
+}
+.prompt__copy:hover { background: var(--chocolate-light); }
+.prompt__copy.copied { background: var(--pistachio-dark); }
+.prompt__copy svg { width: 14px; height: 14px; }
+
+/* ---------- Closing CTA ---------- */
+.kit-cta {
+  background: var(--chocolate); color: var(--cream);
+  border-radius: var(--radius-xl); padding: clamp(28px, 4vw, 44px); text-align: center;
+}
+.kit-cta h2 { font-size: var(--text-2xl); color: var(--cream); margin-bottom: 12px; }
+.kit-cta h2 em { font-style: italic; font-weight: 400; color: var(--terracotta-light); }
+.kit-cta p { color: rgba(247,242,232,0.8); font-weight: 300; max-width: 40em; margin: 0 auto 24px; }
+.kit-cta__row { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-body); font-weight: 600;
+  border: 1.5px solid transparent; border-radius: var(--radius-pill);
+  cursor: pointer; text-align: center; padding: 15px 28px; font-size: 14px;
+  transition: transform 200ms var(--ease-out), background 200ms var(--ease-out);
+}
+.btn--primary { background: var(--terracotta); color: var(--cream); }
+.btn--primary:hover { background: var(--terracotta-dark); transform: translateY(-1px); }
+.btn--ghost-light { border-color: rgba(247,242,232,0.35); color: var(--cream); }
+.btn--ghost-light:hover { background: rgba(247,242,232,0.10); }
+
+.kit-share { text-align: center; margin-top: 28px; font-size: var(--text-sm); color: var(--chocolate-muted); }
+.kit-share a { color: var(--terracotta-dark); font-weight: 600; }
+.kit-colophon { text-align: center; margin-top: 40px; font-size: 12px; color: var(--chocolate-muted); }
+
+/* ---------- Language blocks ---------- */
+[data-lang-block] { display: none; }
+[data-lang-block].active { display: block; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 720px) {
+  .prompts { grid-template-columns: 1fr; }
+  .howto { grid-template-columns: 1fr; }
+  .kit-bar { flex-wrap: wrap; }
+}

@@ -286,6 +286,25 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.
 .package__body span { font-size: var(--text-sm); color: rgba(247,242,232,0.7); }
 .package .btn { margin-left: auto; flex: 0 0 auto; }
 
+/* ---------- LEAD MAGNET ---------- */
+.leadmagnet { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: center; }
+.leadmagnet__copy h2 { font-size: var(--text-3xl); margin: 14px 0 16px; max-width: 14em; }
+.leadmagnet__copy .lead { color: var(--chocolate-light); margin-bottom: 24px; max-width: 30em; }
+.leadmagnet__list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 22px; }
+.leadmagnet__list li { display: flex; gap: 12px; align-items: flex-start; font-size: var(--text-sm); color: var(--chocolate); }
+.leadmagnet__list .ic { flex: 0 0 20px; width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; font-size: 11px; background: var(--pistachio-light); color: var(--chocolate); margin-top: 1px; }
+.leadmagnet__who { max-width: 34em; }
+
+.leadmagnet__card { background: var(--cream); border: 1px solid var(--cream-hover); border-radius: var(--radius-xl); padding: clamp(28px, 4vw, 40px); box-shadow: var(--shadow-lg); }
+.leadmagnet__badge { display: inline-block; background: var(--terracotta); color: var(--cream); font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 14px; border-radius: var(--radius-pill); margin-bottom: 18px; }
+.leadmagnet__card h3 { font-size: var(--text-2xl); margin-bottom: 8px; }
+.leadmagnet__card > p { color: var(--chocolate-light); font-size: var(--text-sm); margin-bottom: 22px; }
+.lm-form { display: flex; flex-direction: column; gap: 12px; }
+.lm-form input { border: 1.5px solid var(--cream-hover); background: var(--cream-dark); border-radius: var(--radius-pill); padding: 14px 22px; font-family: var(--font-body); font-size: var(--text-base); color: var(--chocolate); width: 100%; }
+.lm-form input:focus { outline: none; border-color: var(--terracotta); }
+.leadmagnet__card .form-note { margin-top: 14px; }
+@media (max-width: 1024px) { .leadmagnet { grid-template-columns: 1fr; gap: 32px; } }
+
 /* ---------- FAQ ---------- */
 .faq { max-width: 760px; margin-top: 44px; }
 .faq__item { border-top: 1px solid var(--cream-dark); }

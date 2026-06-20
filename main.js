@@ -88,4 +88,38 @@
       // Real endpoint present → let Formspree handle the POST natively.
     });
   }
+
+  /* --- Lead magnet opt-in (Kit / ConvertKit) — fire-and-redirect -----------
+     POST the email to Kit (it sends the subscription + confirm email server-
+     side), then redirect to the deliverable page. We can't read the no-cors
+     response and don't need to — the side effect is server-side.
+     AT LAUNCH: replace FORM_ID in index.html with the real Kit form id. */
+  var lmForm = document.getElementById("lm-form");
+  if (lmForm) {
+    var SENDING = { es: "Enviando…", en: "Sending…" };
+    lmForm.addEventListener("submit", function (ev) {
+      var email = lmForm.querySelector('input[type="email"]');
+      if (!email || !email.value) return; // let native validation fire
+      ev.preventDefault();
+
+      var action = lmForm.getAttribute("action") || "";
+      var redirect = lmForm.getAttribute("data-redirect") || "fotos-que-provocan.html";
+      if (action.indexOf("FORM_ID") !== -1) {
+        // No real Kit form wired yet → deliver the asset but warn (no capture).
+        console.warn("[RecetaRentable] Kit FORM_ID sin configurar: el correo no se guarda todavía. Reemplaza FORM_ID en index.html.");
+        window.location.href = redirect;
+        return;
+      }
+
+      lmForm.removeAttribute("target"); // JS takes over now
+      var btn = lmForm.querySelector('button[type="submit"]');
+      var lang = "es";
+      try { lang = localStorage.getItem("rr_lang") || "es"; } catch (e) {}
+      if (btn) { btn.disabled = true; btn.textContent = SENDING[lang] || SENDING.es; }
+
+      var go = function () { window.location.href = redirect; };
+      fetch(action, { method: "POST", mode: "no-cors", body: new FormData(lmForm) })
+        .then(go).catch(go); // redirect either way
+    });
+  }
 })();

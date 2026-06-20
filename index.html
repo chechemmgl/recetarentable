@@ -43,6 +43,7 @@
         <a href="#how" data-i18n="nav.how">Cómo funciona</a>
         <a href="#plans" data-i18n="nav.plans">Planes</a>
         <a href="#brandshot" data-i18n="nav.brandshot">BrandShot</a>
+        <a href="#leadmagnet" data-i18n="nav.gift">Regalo gratis</a>
       </nav>
       <div class="nav__actions">
         <div class="lang-toggle" role="group" aria-label="Language">
@@ -60,6 +61,7 @@
     <a href="#how" data-i18n="nav.how">Cómo funciona</a>
     <a href="#plans" data-i18n="nav.plans">Planes</a>
     <a href="#brandshot" data-i18n="nav.brandshot">BrandShot</a>
+    <a href="#leadmagnet" data-i18n="nav.gift">Regalo gratis</a>
     <a href="#waitlist" data-i18n="nav.cta">Calcular mi primera receta →</a>
   </div>
 
@@ -303,6 +305,39 @@
         <div class="ba ba--before"><span class="ba__label" data-i18n="bs.beforeLabel">Antes</span></div>
         <span class="ba__arrow">→</span>
         <div class="ba ba--after"><span class="ba__label" data-i18n="bs.afterLabel">Después</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LEAD MAGNET — Fotos que provocan ===== -->
+  <section class="section bg-cream-dark" id="leadmagnet">
+    <div class="container leadmagnet">
+      <div class="leadmagnet__copy">
+        <span class="eyebrow" data-i18n="lm.eyebrow">Regalo gratis para ti</span>
+        <h2 data-i18n="lm.h2">Fotos que provocan — gratis para tu próximo postre</h2>
+        <p class="lead" data-i18n="lm.sub">Una buena foto te trae el pedido. Te regalo la checklist para tomarla bien — y un pack de 10 prompts para editarla con IA en minutos.</p>
+        <ul class="leadmagnet__list">
+          <li><span class="ic">✓</span><span data-i18n="lm.b1">Checklist de 10 pasos para la foto perfecta — editable con IA</span></li>
+          <li><span class="ic">✓</span><span data-i18n="lm.b2">10 prompts listos para copiar y pegar, por estilo (catálogo, mármol, moody y más)</span></li>
+          <li><span class="ic">✓</span><span data-i18n="lm.b3">Acceso al instante — sin esperar, directo en tu pantalla</span></li>
+        </ul>
+        <p class="micro" data-i18n="lm.who">Para reposteras que venden por WhatsApp o Instagram y quieren que sus fotos se vean tan ricas como saben.</p>
+      </div>
+
+      <div class="leadmagnet__card">
+        <span class="leadmagnet__badge" data-i18n="lm.badge">Gratis · Acceso inmediato</span>
+        <h3 data-i18n="lm.formTitle">Dime a dónde te lo envío</h3>
+        <p data-i18n="lm.formSub">Déjame tu correo y abro tu kit al instante.</p>
+        <!-- Kit (ConvertKit) form 9589563. El form dispara la suscripción y
+             redirige al entregable (data-redirect) vía main.js. -->
+        <form id="lm-form" class="form lm-form"
+              action="https://app.kit.com/forms/9589563/subscriptions"
+              method="POST" target="_blank"
+              data-redirect="fotos-que-provocan.html">
+          <input type="email" name="email_address" required data-i18n-ph="lm.placeholder" placeholder="tu@correo.com" aria-label="Email" />
+          <button type="submit" class="btn btn--primary btn--md btn--full" data-i18n="lm.btn">Quiero mis fotos que provocan →</button>
+        </form>
+        <p class="form-note" data-i18n="lm.note">Sin spam. Solo tips de repostería con cariño — y te puedes salir cuando quieras.</p>
       </div>
     </div>
   </section>

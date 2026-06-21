@@ -368,15 +368,40 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.
   .final .form-row { margin-inline: auto; }
 }
 
-/* ---------- FOOTER ---------- */
-.footer__grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; padding-block: 64px 32px; }
+/* ---------- FOOTER ----------
+   Hereda el diseño del antiguo CTA final: fondo oscuro + foto de torta.
+   Dos columnas reales: TODO el texto en el marrón a la izquierda, la torta
+   completa a la derecha — nunca se solapan. */
+.footer { position: relative; overflow: hidden; display: grid; grid-template-columns: 1fr minmax(300px, 0.8fr); }
+.footer__main { display: flex; flex-direction: column; padding: 64px clamp(24px, 5vw, 72px) 28px; }
+.footer .final__photo {
+  position: relative; inset: auto; width: auto; height: auto; min-height: 540px; z-index: 1;
+  background-image: url('assets/photos/cta-cake.jpg');
+  background-size: cover; background-position: center; background-repeat: no-repeat;
+  opacity: 1;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 22%);
+  mask-image: linear-gradient(90deg, transparent 0%, black 22%);
+}
+.footer__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 40px; }
+.footer__brand { grid-column: 1 / -1; }
 .footer__logo { height: 160px; width: auto; display: block; }
 .footer__brand strong { font-family: var(--font-display); font-size: var(--text-lg); }
 .footer__brand .script { font-size: 26px; color: var(--terracotta-light); display: block; margin-top: 6px; }
 .footer h4 { font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; color: rgba(247,242,232,0.6); }
 .footer a { font-size: var(--text-sm); color: rgba(247,242,232,0.82); display: block; padding: 5px 0; }
 .footer a:hover { color: var(--cream); }
-.footer__bottom { border-top: 1px solid rgba(247,242,232,0.12); padding-block: 24px; text-align: center; font-size: 12px; color: rgba(247,242,232,0.5); }
+.footer__bottom { margin-top: auto; border-top: 1px solid rgba(247,242,232,0.12); padding-top: 28px; text-align: left; font-size: 12px; color: rgba(247,242,232,0.5); }
+
+/* Footer apilado en pantallas angostas: torta arriba como banner, texto debajo. */
+@media (max-width: 900px) {
+  .footer { grid-template-columns: 1fr; min-height: 0; }
+  .footer .final__photo {
+    order: -1; min-height: 260px;
+    -webkit-mask-image: linear-gradient(180deg, black 60%, transparent 100%);
+    mask-image: linear-gradient(180deg, black 60%, transparent 100%);
+  }
+  .footer__main { padding-block: 36px 28px; }
+}
 
 /* ---------- Scroll reveal ---------- */
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity 500ms ease, transform 500ms ease; }

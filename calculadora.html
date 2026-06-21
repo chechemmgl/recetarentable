@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-t="meta.title">¿Tu receta deja ganancia? · Calculadora gratis · Modo Repostera</title>
+  <meta name="description" data-t-attr="content" data-t="meta.desc" content="Calcula gratis si tu receta te deja ganancia: mete lo que te cuesta y lo que cobras, y mira tu margen real en segundos." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="kit.css" />
+  <link rel="stylesheet" href="calc.css" />
+</head>
+<body>
+
+  <!-- ===== TOP BAR ===== -->
+  <div class="kit-bar">
+    <a class="kit-bar__brand" href="index.html" aria-label="Modo Repostera">
+      <img class="kit-bar__iso" src="assets/logos/iso-color.svg" alt="Modo Repostera" />
+      <span class="kit-bar__name">
+        <span class="kit-bar__modo">MODO</span>
+        <span class="kit-bar__rep">repostera</span>
+      </span>
+    </a>
+    <div class="kit-bar__actions">
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button data-lang="es" class="active">ES</button>
+        <button data-lang="en">EN</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="page">
+
+    <!-- ===== HEAD ===== -->
+    <header class="kit-head">
+      <span class="eyebrow" data-t="head.eyebrow">Calculadora gratis</span>
+      <h1 data-t-html="head.title">¿Tu receta deja <em>ganancia</em>?</h1>
+      <p data-t="head.sub">Mete lo que te cuesta hacerla y lo que cobras. Te digo en segundos si ganas, cuánto, y a cuánto deberías venderla para no regalar tu trabajo.</p>
+    </header>
+
+    <!-- ===== FORM ===== -->
+    <form class="calc-form" id="calc-form" novalidate>
+      <div class="calc-grid">
+
+        <div class="field field--full">
+          <label data-t="f.nombre">¿Qué receta? <span class="opt" data-t="f.optional">(opcional)</span></label>
+          <div class="input-wrap">
+            <input type="text" id="nombre" data-t-attr="placeholder" data-t="f.nombrePh" placeholder="Torta de zanahoria" autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label data-t="f.ingredientes">¿Cuánto gastaste en ingredientes?</label>
+          <span class="help" data-t="f.ingredientesHelp">Todo lo que usaste en esta tanda.</span>
+          <div class="input-wrap money">
+            <input type="number" id="ingredientes" inputmode="decimal" min="0" step="any" placeholder="0" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label data-t="f.unidades">¿Cuántas unidades te rinde?</label>
+          <span class="help" data-t="f.unidadesHelp">1 torta, 12 cupcakes, 24 galletas…</span>
+          <div class="input-wrap">
+            <input type="number" id="unidades" inputmode="numeric" min="1" step="any" placeholder="1" />
+          </div>
+          <span class="err" data-t="err.unidades">Pon cuántas unidades te rinde (al menos 1).</span>
+        </div>
+
+        <div class="field">
+          <label data-t="f.horas">¿Cuánto tiempo te tomó? <span class="opt" data-t="f.horasUnit">(horas)</span></label>
+          <span class="help" data-t="f.horasHelp">Incluye ir al súper, hornear, decorar, limpiar.</span>
+          <div class="input-wrap">
+            <input type="number" id="horas" inputmode="decimal" min="0" step="any" placeholder="0" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label data-t="f.valorHora">¿Cuánto vale tu hora?</label>
+          <span class="help" data-t="f.valorHoraHelp">Lo que te gustaría ganar por hora de trabajo.</span>
+          <div class="input-wrap money">
+            <input type="number" id="valorHora" inputmode="decimal" min="0" step="any" placeholder="0" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label data-t="f.empaque">Empaque por unidad <span class="opt" data-t="f.optional">(opcional)</span></label>
+          <span class="help" data-t="f.empaqueHelp">Caja, base, cinta, etiqueta.</span>
+          <div class="input-wrap money">
+            <input type="number" id="empaque" inputmode="decimal" min="0" step="any" placeholder="0" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label data-t="f.otros">Otros gastos de la tanda <span class="opt" data-t="f.optional">(opcional)</span></label>
+          <span class="help" data-t="f.otrosHelp">Gas, luz, delivery…</span>
+          <div class="input-wrap money">
+            <input type="number" id="otros" inputmode="decimal" min="0" step="any" placeholder="0" />
+          </div>
+        </div>
+
+        <div class="field field--full">
+          <label data-t="f.precio">¿A cuánto la vendes? <span class="opt" data-t="f.precioUnit">(por unidad)</span></label>
+          <span class="help" data-t="f.precioHelp">El precio que cobras hoy por cada una.</span>
+          <div class="input-wrap money">
+            <input type="number" id="precio" inputmode="decimal" min="0" step="any" placeholder="0" />
+          </div>
+          <span class="err" data-t="err.precio">Pon a cuánto la vendes para poder darte el veredicto.</span>
+        </div>
+
+      </div>
+
+      <p class="money-note" data-t="f.moneyNote">Usa tu moneda — da igual cuál. El cálculo es relativo.</p>
+      <div class="calc-submit">
+        <button type="submit" class="btn btn--primary" data-t="f.submit">Ver si me deja ganancia →</button>
+      </div>
+    </form>
+
+    <!-- ===== RESULT ===== -->
+    <section class="result" id="result" hidden aria-live="polite">
+      <div class="result__inner">
+
+        <div class="result__card" id="result-card">
+          <div class="result__eyebrow" data-t="r.eyebrow">Tu resultado</div>
+          <div class="result__recipe" id="r-recipe"></div>
+          <div class="result__claim" id="r-claim"></div>
+          <div class="result__numbers" id="r-numbers" hidden>
+            <div class="result__num"><b id="r-profit"></b><span id="r-profit-label"></span></div>
+            <div class="result__num"><b id="r-margin"></b><span data-t="r.marginLabel">margen</span></div>
+          </div>
+          <p class="result__verdict" id="r-verdict"></p>
+        </div>
+
+        <!-- Caveat del gate educativo -->
+        <aside class="caveat" id="caveat" hidden>
+          <h3 data-t="caveat.title">Ojo: no contaste tu tiempo</h3>
+          <p data-t="caveat.body">Amasar, ir al súper, decorar, limpiar — eso es trabajo, y vale. Te lo sumé como $0, así que este número se ve mejor de lo que es. Mira cómo cambia si te pagas tu hora.</p>
+          <!-- texto seteado por calc.js (interpola el valor/hora sugerido) -->
+          <button type="button" class="caveat__btn" id="caveat-btn">Calcular pagándome $5 la hora →</button>
+        </aside>
+
+        <!-- Email gate -->
+        <div class="gate" id="gate">
+          <h3 data-t="gate.title">Desbloquea tu desglose completo</h3>
+          <p data-t="gate.body">Déjame tu correo y te muestro en qué se va tu dinero — y a cuánto deberías vender para ganar bien. Gratis.</p>
+          <form class="gate__form" id="gate-form" novalidate>
+            <input type="email" id="email" required data-t-attr="placeholder" data-t="gate.emailPh" placeholder="tu@correo.com" autocomplete="email" />
+            <button type="submit" class="btn btn--primary" data-t="gate.btn">Ver mi desglose →</button>
+          </form>
+          <p class="gate__note" data-t="gate.note">Sin spam. Solo tips de repostería con cariño — y te sales cuando quieras.</p>
+        </div>
+
+        <!-- Unlocked breakdown -->
+        <div class="unlocked" id="unlocked" hidden>
+          <div class="unlocked__inner">
+
+            <div class="panel">
+              <h3 data-t="bd.title">En qué se va tu costo</h3>
+              <p class="sub" data-t="bd.sub">Por unidad. Aquí ves qué te está pesando más.</p>
+              <div class="breakdown" id="breakdown"></div>
+              <div class="bd-total">
+                <span data-t="bd.total">Costo por unidad</span>
+                <span id="bd-total-val"></span>
+              </div>
+            </div>
+
+            <div class="panel suggested">
+              <h3 data-t="sug.title">Para un margen sano deberías cobrar</h3>
+              <div class="suggested__price" id="sug-price"></div>
+              <p class="suggested__delta" id="sug-delta"></p>
+            </div>
+
+            <div class="share-row">
+              <button type="button" class="btn btn--primary" id="share-btn" data-t="share.btn">Compartir mi resultado</button>
+              <button type="button" class="btn btn--ghost-light" id="recalc-btn" style="border-color:var(--cream-hover);color:var(--chocolate)" data-t="share.recalc">Probar otra receta</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== CTA al tool pago ===== -->
+    <section class="kit-cta" style="margin-top:48px">
+      <h2 data-t-html="cta.title">Esto fue a mano. Con una foto es en <em>segundos</em>.</h2>
+      <p data-t="cta.body">RecetaRentable lee tu receta desde una foto y la cruza con los precios de tu supermercado local. Sin escribir nada, sin Excel. Tu primera receta es gratis.</p>
+      <div class="kit-cta__row">
+        <a class="btn btn--primary" id="cta-tool" href="index.html#plans" data-t="cta.btn">Probar el tool →</a>
+        <a class="btn btn--ghost-light" href="index.html#brandshot" data-t="cta.brandshot">¿Y tus fotos? Mira BrandShot</a>
+      </div>
+      <p class="cta-fineprint" data-t="cta.fineprint">Funciona siempre y cuando existan supermercados con precios publicados en la web.</p>
+    </section>
+
+    <p class="kit-share" data-t-html="foot.share">¿Te sirvió? Compártelo con otra repostera: <a href="index.html">recetarentable.vercel.app</a></p>
+    <p class="kit-colophon" data-t="foot.colophon">Calculadora gratis · by Modo Repostera · Hecho por una repostera, para reposteras.</p>
+
+  </div>
+
+  <script src="calc-scoring.js"></script>
+  <script src="calc.js"></script>
+</body>
+</html>

@@ -62,7 +62,7 @@
     <a href="#plans" data-i18n="nav.plans">Planes</a>
     <a href="#brandshot" data-i18n="nav.brandshot">BrandShot</a>
     <a href="#leadmagnet" data-i18n="nav.gift">Regalo gratis</a>
-    <a href="#waitlist" data-i18n="nav.cta">Calcular mi primera receta →</a>
+    <a href="calculadora.html" data-i18n="nav.cta">Calcular mi primera receta →</a>
   </div>
 
   <!-- ===== HERO ===== -->
@@ -394,63 +394,39 @@
     </div>
   </section>
 
-  <!-- ===== WAITLIST + CTA FINAL ===== -->
-  <section class="section bg-dark grain" id="waitlist">
-    <div class="final__photo" aria-hidden="true"></div>
-    <div class="container final">
-      <span class="eyebrow center" style="display:block;">Lista de espera</span>
-      <h2 data-i18n="final.h2">Tu receta ya está lista. Lo que falta es saber cuánto vale.</h2>
-      <p data-i18n="final.sub">Empieza gratis. Sin registro. Con la foto que tienes en tu teléfono ahora mismo.</p>
-
-      <div class="waitlist">
-        <h3 data-i18n="wl.h3">Sé de las primeras en usarla</h3>
-        <p data-i18n="wl.p">La herramienta está por lanzarse. Déjanos tu correo y te avisamos apenas esté lista.</p>
-        <!-- [PLACEHOLDER] Sustituir action por el endpoint de Formspree: https://formspree.io/f/XXXXXXX -->
-        <form id="waitlist-form" class="form" action="https://formspree.io/f/PLACEHOLDER" method="POST">
-          <div class="form-row">
-            <input type="email" name="email" required data-i18n-ph="wl.placeholder" placeholder="tu@correo.com" />
-            <button type="submit" class="btn btn--primary btn--md" data-i18n="wl.btn">Avisarme cuando esté lista</button>
-          </div>
-        </form>
-        <p class="form-note" data-i18n="wl.note">Serás de las primeras en usarla. Sin spam.</p>
-      </div>
-
-      <p class="micro" style="margin-top:26px;" data-i18n="final.micro">RecetaRentable · by Modo Repostera · Hecho por una repostera, para reposteras.</p>
-    </div>
-  </section>
-
-  <!-- ===== FOOTER ===== -->
-  <footer class="bg-footer footer">
-    <div class="container footer__grid">
-      <div class="footer__brand">
-        <span class="brandlock brandlock--footer">
-          <img class="brandlock__iso" src="assets/logos/iso-color.svg" alt="Modo Repostera" />
-          <span class="brandlock__name">
-            <span class="brandlock__modo">MODO</span>
-            <span class="brandlock__rep">repostera</span>
+  <!-- ===== FOOTER (hereda el diseño del antiguo CTA final: oscuro + foto torta a la derecha) ===== -->
+  <footer class="footer bg-dark grain">
+    <div class="footer__main">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <span class="brandlock brandlock--footer">
+            <img class="brandlock__iso" src="assets/logos/iso-color.svg" alt="Modo Repostera" />
+            <span class="brandlock__name">
+              <span class="brandlock__modo">MODO</span>
+              <span class="brandlock__rep">repostera</span>
+            </span>
           </span>
-        </span>
+        </div>
+        <div>
+          <h4 data-i18n="footer.explore">Explora</h4>
+          <a href="#top" data-i18n="footer.l1">RecetaRentable</a>
+          <a href="#brandshot" data-i18n="footer.l2">BrandShot</a>
+          <a href="#how" data-i18n="footer.l3">Cómo funciona</a>
+          <a href="#faq" data-i18n="footer.l4">FAQ</a>
+        </div>
+        <div>
+          <h4 data-i18n="footer.contact">Contacto</h4>
+          <a href="https://instagram.com/modorepostera" target="_blank" rel="noopener">Instagram @modorepostera</a>
+          <a href="mailto:hola@modorepostera.com">hola@modorepostera.com</a>
+          <a href="#" data-i18n="footer.privacy">Política de privacidad</a>
+          <a href="#" data-i18n="footer.terms">Términos de uso</a>
+        </div>
       </div>
-      <div>
-        <h4 data-i18n="footer.explore">Explora</h4>
-        <a href="#top" data-i18n="footer.l1">RecetaRentable</a>
-        <a href="#brandshot" data-i18n="footer.l2">BrandShot</a>
-        <a href="#how" data-i18n="footer.l3">Cómo funciona</a>
-        <a href="#faq" data-i18n="footer.l4">FAQ</a>
-      </div>
-      <div>
-        <h4 data-i18n="footer.contact">Contacto</h4>
-        <a href="https://instagram.com/modorepostera" target="_blank" rel="noopener">Instagram @modorepostera</a>
-        <!-- [PLACEHOLDER] número de WhatsApp -->
-        <a href="#" data-cta="plan">WhatsApp [PLACEHOLDER]</a>
-        <a href="mailto:hola@modorepostera.com">hola@modorepostera.com</a>
-        <a href="#" data-i18n="footer.privacy">Política de privacidad</a>
-        <a href="#" data-i18n="footer.terms">Términos de uso</a>
+      <div class="footer__bottom">
+        <span data-i18n="footer.copy">© 2026 RecetaRentable · by Modo Repostera · Hecho con oficio.</span>
       </div>
     </div>
-    <div class="footer__bottom">
-      <span data-i18n="footer.copy">© 2026 RecetaRentable · by Modo Repostera · Hecho con oficio.</span>
-    </div>
+    <div class="final__photo" aria-hidden="true"></div>
   </footer>
 
   <script src="i18n.js"></script>

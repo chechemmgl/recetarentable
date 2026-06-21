@@ -1,5 +1,5 @@
 /* main.js — RecetaRentable interactions: nav scroll, mobile menu, FAQ, reveal,
-   and pre-launch CTA routing (tool not live → send to waitlist). */
+   and CTA routing (CTAs → calculadora; planes pagos → checkout cuando exista). */
 
 (function () {
   "use strict";
@@ -47,47 +47,24 @@
     revealEls.forEach(function (el) { el.classList.add("visible"); });
   }
 
-  /* --- Pre-launch CTA routing ---------------------------------------------
-     The tool is NOT live yet. Any "Calcular gratis" / paid-plan CTA carries
-     data-cta and is intercepted to scroll to the waitlist form.
-     AT LAUNCH: set TOOL_URL below to the live tool URL (and PLAN_URL for
-     checkout). One change flips every primary CTA from waitlist to the tool. */
-  var TOOL_URL = ""; // [PLACEHOLDER] e.g. "https://app.recetarentable.com"
+  /* --- CTA routing --------------------------------------------------------
+     El waitlist se eliminó (la herramienta está lista). Los CTA "tool" van a la
+     calculadora; los "plan" irían al checkout (PLAN_URL) y, mientras no exista,
+     caen también a la calculadora como punto de entrada en vivo.
+     AT LAUNCH del checkout: setear PLAN_URL → flipa los CTA de planes pagos. */
+  var TOOL_URL = "calculadora.html"; // calculadora gratis = punto de entrada en vivo
   var PLAN_URL = ""; // [PLACEHOLDER] checkout base URL
-
-  function goWaitlist() {
-    var wl = document.getElementById("waitlist");
-    if (!wl) return;
-    wl.scrollIntoView({ behavior: "smooth", block: "center" });
-    var input = wl.querySelector("input[type=email]");
-    if (input) setTimeout(function () { input.focus(); }, 600);
-  }
 
   document.querySelectorAll("[data-cta]").forEach(function (el) {
     el.addEventListener("click", function (ev) {
       var type = el.getAttribute("data-cta");
       var dest = type === "plan" ? PLAN_URL : TOOL_URL;
       if (dest) { window.location.href = dest; return; }
+      // Sin URL de checkout viva → la calculadora es el punto de entrada en vivo.
       ev.preventDefault();
-      goWaitlist();
+      window.location.href = "calculadora.html";
     });
   });
-
-  // --- Waitlist form (Formspree) ---
-  var form = document.getElementById("waitlist-form");
-  if (form) {
-    var endpoint = form.getAttribute("action") || "";
-    form.addEventListener("submit", function (ev) {
-      // No real endpoint configured yet → don't pretend to submit.
-      if (!endpoint || endpoint.indexOf("PLACEHOLDER") !== -1) {
-        ev.preventDefault();
-        var note = form.parentElement.querySelector(".form-note");
-        if (note) note.textContent = "[PLACEHOLDER] Conecta tu endpoint de Formspree en index.html para activar el formulario.";
-        return;
-      }
-      // Real endpoint present → let Formspree handle the POST natively.
-    });
-  }
 
   /* --- Lead magnet opt-in (Kit / ConvertKit) — fire-and-redirect -----------
      POST the email to Kit (it sends the subscription + confirm email server-

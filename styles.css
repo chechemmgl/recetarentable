@@ -145,6 +145,10 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.
 .nav .brandlock__name { color: var(--cream); transition: color 300ms; }
 .nav.scrolled .brandlock__name { color: var(--chocolate); }
 .footer .brandlock__name { color: var(--cream); }
+
+/* Lockup de marca reutilizado como eyebrow en secciones (ej. BrandShot) */
+.brand-lockup { display: inline-flex; align-items: center; gap: 11px; margin-bottom: 16px; }
+.bg-chocolate .brandlock__name { color: var(--cream); }
 .nav__logo-mark .mark--dark { display: none; }
 .nav.scrolled .nav__logo-mark .mark--light { display: none; }
 .nav.scrolled .nav__logo-mark .mark--dark { display: block; }
@@ -272,11 +276,18 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.
 .pricing__micro { margin-top: 36px; text-align: center; }
 
 /* ---------- BRANDSHOT ---------- */
-.brandshot__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.brandshot__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
 .beforeafter { display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: center; }
+.ba-stack { display: flex; flex-direction: column; gap: 22px; }
 .ba { position: relative; aspect-ratio: 3/4; border-radius: var(--radius-md); overflow: hidden; }
-.ba--before { background-image: url('assets/photos/before-cake.jpg'), linear-gradient(135deg, var(--chocolate-light), var(--chocolate-muted)); background-size: cover, cover; background-position: center, center; filter: brightness(0.65) saturate(0.5); }
-.ba--after { background-image: url('assets/photos/after-cake.png'), linear-gradient(135deg, var(--terracotta-light), var(--terracotta)); background-size: cover, cover; background-position: center, center; border: 2px solid var(--terracotta); }
+.ba--before { background-size: cover, cover; background-position: center, center; filter: brightness(0.65) saturate(0.5); }
+.ba--after { background-size: cover, cover; background-position: center, center; border: 2px solid var(--terracotta); }
+.ba--fresa-before { background-image: url('assets/photos/before-cake.jpg'), linear-gradient(135deg, var(--chocolate-light), var(--chocolate-muted)); }
+.ba--fresa-after  { background-image: url('assets/photos/after-cake.png'), linear-gradient(135deg, var(--terracotta-light), var(--terracotta)); }
+.ba--choco-before { background-image: url('assets/photos/cta-cake.jpg'), linear-gradient(135deg, var(--chocolate-light), var(--chocolate-muted)); filter: none; }
+.ba--choco-after  { background-image: url('assets/photos/after-choco.jpg'), linear-gradient(135deg, var(--cream), var(--cream-dark)); }
+.ba--choco2-before { background-image: url('assets/photos/antes-1.jpg'), linear-gradient(135deg, var(--chocolate-light), var(--chocolate-muted)); }
+.ba--choco2-after  { background-image: url('assets/photos/despues-1.jpg'), linear-gradient(135deg, var(--chocolate-deep), var(--chocolate)); }
 .ba__label { position: absolute; top: 12px; left: 12px; background: rgba(28,13,4,0.7); color: var(--cream); font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: var(--radius-pill); }
 .ba__arrow { font-size: 24px; color: var(--terracotta-light); }
 .packages { display: flex; flex-direction: column; gap: 14px; margin-top: 32px; }

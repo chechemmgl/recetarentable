@@ -280,7 +280,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.
 .beforeafter { display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: center; }
 .ba-stack { display: flex; flex-direction: column; gap: 22px; }
 .ba { position: relative; aspect-ratio: 3/4; border-radius: var(--radius-md); overflow: hidden; }
-.ba--before { background-size: cover, cover; background-position: center, center; filter: brightness(0.65) saturate(0.5); }
+.ba--before { background-size: cover, cover; background-position: center, center; }
 .ba--after { background-size: cover, cover; background-position: center, center; border: 2px solid var(--terracotta); }
 .ba--fresa-before { background-image: url('assets/photos/before-cake.jpg'), linear-gradient(135deg, var(--chocolate-light), var(--chocolate-muted)); }
 .ba--fresa-after  { background-image: url('assets/photos/after-cake.png'), linear-gradient(135deg, var(--terracotta-light), var(--terracotta)); }

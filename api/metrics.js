@@ -73,6 +73,7 @@ module.exports = async function handler(req, res) {
       unlock_rate:        live ? num(d.unlock_rate) : null,
       no_time_pct:        live ? num(d.no_time_pct) : null,
       bands:              live ? (d.bands || {}) : {},
+      top_recetas:        live ? (d.top_recetas || []) : [],
       daily:              live ? (d.daily || []) : [],
       latest:             live ? num(d.latest) : null
     },

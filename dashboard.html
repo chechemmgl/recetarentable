@@ -58,6 +58,13 @@
   .b-fuerte    { background: var(--pistachio-dark); }
   .band-swatch { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 8px; vertical-align: middle; }
 
+  .receta-row { display: grid; grid-template-columns: 26px minmax(90px, 200px) 1fr 40px; align-items: center;
+    gap: 12px; margin: 9px 0; }
+  .receta-rank { font-family: var(--font-display); font-weight: 600; color: var(--terracotta-dark);
+    text-align: center; font-size: var(--text-md); }
+  .receta-name { font-size: var(--text-sm); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .receta-fill { background: var(--terracotta); }
+
   .days { display: flex; align-items: flex-end; gap: 6px; height: 130px; padding-top: 8px; }
   .day { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 0; }
   .day-bar { width: 100%; max-width: 34px; background: var(--terracotta-light); border-radius: 5px 5px 0 0;
@@ -124,6 +131,12 @@
   </div>
 
   <div class="panel">
+    <h2>Recetas más calculadas</h2>
+    <p class="hint">Qué reposteras escriben en "¿Qué receta?" al calcular. (Es un campo opcional — solo cuenta las que pusieron nombre.)</p>
+    <div id="recetas"></div>
+  </div>
+
+  <div class="panel">
     <h2>Actividad de los últimos 14 días</h2>
     <p class="hint">Cálculos completados por día.</p>
     <div id="days-wrap"></div>
@@ -174,6 +187,28 @@
         '<span class="band-label"><span class="band-swatch ' + b.cls + '"></span>' + b.label + '</span>' +
         '<span class="band-track"><span class="band-fill ' + b.cls + '" style="width:' + pct.toFixed(1) + '%"></span></span>' +
         '<span class="band-val">' + n + '</span>';
+      host.appendChild(row);
+    });
+  }
+
+  function renderRecetas(list) {
+    var host = $("recetas");
+    host.innerHTML = "";
+    if (!list || !list.length) {
+      host.innerHTML = '<p class="empty">Nadie ha puesto nombre de receta todavía. Aparecerán aquí en cuanto empiecen a llenar ese campo.</p>';
+      return;
+    }
+    var max = list.reduce(function (m, r) { return Math.max(m, r.n || 0); }, 0) || 1;
+    list.slice(0, 8).forEach(function (r, i) {
+      var pct = ((r.n || 0) / max) * 100;
+      var row = document.createElement("div");
+      row.className = "receta-row";
+      var name = (r.nombre || "").replace(/[<>&]/g, "");   // sanea texto libre
+      row.innerHTML =
+        '<span class="receta-rank">' + (i + 1) + '</span>' +
+        '<span class="receta-name" title="' + name + '">' + name + '</span>' +
+        '<span class="band-track"><span class="band-fill receta-fill" style="width:' + pct.toFixed(1) + '%"></span></span>' +
+        '<span class="band-val">' + (r.n || 0) + '</span>';
       host.appendChild(row);
     });
   }
@@ -231,6 +266,7 @@
     setStat("m-notime", fmtPct(m.no_time_pct));
 
     renderBands(m.bands);
+    renderRecetas(m.top_recetas);
     renderDays(m.daily);
 
     // Nota honesta de tamaño de muestra

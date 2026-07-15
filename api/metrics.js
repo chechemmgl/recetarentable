@@ -64,7 +64,8 @@ async function fetchKitEmails() {
   if (!KIT_API_SECRET) return { configured: false };
   try {
     const url = 'https://api.convertkit.com/v3/forms/' + KIT_FORM_ID +
-      '/subscriptions?api_secret=' + encodeURIComponent(KIT_API_SECRET) + '&per_page=1';
+      '/subscriptions?api_secret=' + encodeURIComponent(KIT_API_SECRET) +
+      '&subscriber_state=active&per_page=1';   // active = confirmadas (la verdad de tu lista)
     const r = await fetch(url);
     if (!r.ok) return { configured: true, error: 'kit_failed', status: r.status };
     const j = await r.json();

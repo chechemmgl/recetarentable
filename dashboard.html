@@ -205,14 +205,20 @@
       <p class="sub">sesiones con más de un cálculo</p>
     </div>
     <div class="card tile">
-      <p class="eyebrow">Emails captados</p>
+      <p class="eyebrow">Suscriptoras (Kit)</p>
       <div class="stat" id="m-emails">—</div>
-      <p class="sub">suscriptoras en Kit</p>
+      <p class="sub">confirmadas de verdad en tu lista</p>
       <span class="tile-src" id="emails-src"></span>
     </div>
   </div>
 
   <div class="stack" style="margin-top:18px">
+    <div class="panel">
+      <h2>De email a suscriptora</h2>
+      <p class="hint">Por qué el panel puede mostrar más "emails" que Kit: enviar el formulario no es lo mismo que confirmar.</p>
+      <div id="funnel-email"></div>
+      <p class="note" id="email-gap-note"></p>
+    </div>
     <div class="panel">
       <h2>Fuentes de tráfico</h2>
       <p class="hint">De dónde llegan a la calculadora (según el referrer).</p>
@@ -301,7 +307,7 @@
     var steps = [
       { label: "Iniciaron", n: m.started_sessions },
       { label: "Completaron", n: m.completed_sessions },
-      { label: "Dejaron email", n: m.unlocked_sessions },
+      { label: "Enviaron su email", n: m.unlocked_sessions },
       { label: "Clic al tool", n: m.tool_clicks }
     ];
     if (!isNum(m.started_sessions)) { host.innerHTML = '<p class="empty">Sin datos de embudo.</p>'; return; }
@@ -324,6 +330,38 @@
       sn.innerHTML = "Compartieron su resultado: <b>" + m.share_clicks + "</b>" +
         (isNum(m.share_rate) ? " (" + Math.round(m.share_rate * 100) + "% de quienes completaron)" : "");
     } else { sn.textContent = ""; }
+  }
+
+  function renderEmailFunnel(m) {
+    var host = $("funnel-email"); host.innerHTML = "";
+    var enviaron = isNum(m.unlocked_sessions) ? m.unlocked_sessions : null;
+    var confirmadas = isNum(m.emails_total) ? m.emails_total : null;
+    if (enviaron === null && confirmadas === null) { host.innerHTML = '<p class="empty">Sin datos todavía.</p>'; return; }
+    var gap = (enviaron !== null && confirmadas !== null) ? Math.max(0, enviaron - confirmadas) : null;
+    var rows = [
+      { label: "Enviaron su email", n: enviaron, cls: "fill-terra" },
+      { label: "Confirmadas en Kit", n: confirmadas, cls: "fill-pist" },
+      { label: "Sin confirmar / no llegaron", n: gap, cls: "b-ajustado" }
+    ];
+    var max = rows.reduce(function (a, r) { return Math.max(a, isNum(r.n) ? r.n : 0); }, 0) || 1;
+    rows.forEach(function (r) {
+      var pct = (isNum(r.n) ? r.n : 0) / max * 100;
+      var row = document.createElement("div");
+      row.className = "bar-row funnel-row";
+      row.innerHTML =
+        '<span class="bar-label">' + r.label + '</span>' +
+        '<span class="bar-track"><span class="bar-fill ' + r.cls + '" style="width:' + pct.toFixed(1) + '%"></span></span>' +
+        '<span class="bar-val">' + (isNum(r.n) ? r.n : "—") + '</span>';
+      host.appendChild(row);
+    });
+    var note = $("email-gap-note");
+    if (gap !== null && gap > 0) {
+      note.innerHTML = "Esas <b>" + gap + "</b> enviaron su email pero no están en Kit. Suele ser: no confirmaron el correo (doble opt-in), pruebas tuyas, o correos repetidos/inválidos. Míralo en Kit → Subscribers → filtro <b>Unconfirmed</b>.";
+    } else if (gap === 0) {
+      note.innerHTML = "Todas las que enviaron su email están confirmadas en Kit. 🎉";
+    } else {
+      note.textContent = "";
+    }
   }
 
   function renderRefs(list) {
@@ -422,6 +460,7 @@
 
     // paneles
     renderFunnel(m);
+    renderEmailFunnel(m);
     renderBands(m.bands);
     renderRecetas(m.top_recetas);
     renderRefs(m.top_referrers);

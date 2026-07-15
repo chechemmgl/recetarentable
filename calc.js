@@ -34,8 +34,8 @@
       "f.unidades": "¿Cuántas unidades te rinde?",
       "f.unidadesHelp": "1 torta, 12 cupcakes, 24 galletas…",
       "f.horas": "¿Cuánto tiempo invertiste en hacer la torta?",
-      "f.horasUnit": "(minutos)",
-      "f.horasHelp": "Incluye ir al súper, hornear, decorar, limpiar.",
+      "f.horasUnit": "(horas)",
+      "f.horasHelp": "En horas — puedes usar decimales, ej. 2,5 horas. Incluye ir al súper, hornear, decorar, limpiar.",
       "f.valorHora": "¿Cuánto vale tu hora?",
       "f.valorHoraHelp": "Lo que te gustaría ganar por hora de trabajo.",
       "f.empaque": "Empaque por unidad",
@@ -103,8 +103,8 @@
       "f.unidades": "How many units does it make?",
       "f.unidadesHelp": "1 cake, 12 cupcakes, 24 cookies…",
       "f.horas": "How much time did you put into the cake?",
-      "f.horasUnit": "(minutes)",
-      "f.horasHelp": "Include grocery run, baking, decorating, cleanup.",
+      "f.horasUnit": "(hours)",
+      "f.horasHelp": "In hours — decimals are fine, e.g. 2.5 hours. Include grocery run, baking, decorating, cleanup.",
       "f.valorHora": "What's your hour worth?",
       "f.valorHoraHelp": "What you'd like to earn per hour of work.",
       "f.empaque": "Packaging per unit",
@@ -277,7 +277,7 @@
       nombre: val("nombre").trim(),
       ingredientes: val("ingredientes"),
       unidades: val("unidades"),
-      minutos: val("minutos"),
+      horas: val("horas"),
       valorHora: val("valorHora"),
       empaque: val("empaque"),
       otros: val("otros"),
@@ -390,7 +390,7 @@
   function recalcConTiempo() {
     var el = $("valorHora");
     if (el && (!el.value || parseFloat(el.value) <= 0)) el.value = String(VALOR_HORA_SUG);
-    if ($("minutos") && (!$("minutos").value || parseFloat($("minutos").value) <= 0)) $("minutos").value = "120";
+    if ($("horas") && (!$("horas").value || parseFloat($("horas").value) <= 0)) $("horas").value = "2";
     calcular();
   }
 

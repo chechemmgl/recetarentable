@@ -31,7 +31,7 @@
   /* Convierte un valor de entrada (string del input, undefined, etc.) a número
      >= 0. Vacío/NaN/negativo → 0. Mantiene el motor robusto a inputs sucios. */
   function num(v) {
-    var n = typeof v === "number" ? v : parseFloat(v);
+    var n = typeof v === "number" ? v : parseFloat(String(v).replace(",", "."));
     if (!isFinite(n) || n < 0) return 0;
     return n;
   }
@@ -41,10 +41,9 @@
   }
 
   /* scoreReceta(input) → resultado.
-     input = { nombre, ingredientes, unidades, minutos, valorHora, empaque,
+     input = { nombre, ingredientes, unidades, horas, valorHora, empaque,
                otros, precio }
-     Nota: `minutos` es el tiempo invertido en minutos; `valorHora` sigue siendo
-     la tarifa por HORA → el costo de trabajo es (minutos/60) × valorHora.
+     `horas` admite decimales (ej. 2,5). Costo de trabajo = horas × valorHora.
      Devuelve { ok:false, error } si faltan datos imprescindibles
      (unidades >= 1 y precio > 0); de lo contrario { ok:true, ... }. */
   function scoreReceta(input) {
@@ -52,7 +51,7 @@
 
     var ingredientes = num(input.ingredientes);
     var unidades = num(input.unidades);
-    var minutos = num(input.minutos);
+    var horas = num(input.horas);
     var valorHora = num(input.valorHora);
     var empaque = num(input.empaque);
     var otros = num(input.otros);
@@ -65,14 +64,14 @@
       return { ok: false, error: "precio" };      // sin precio no hay veredicto
     }
 
-    var costoTrabajoLote = (minutos / 60) * valorHora;
+    var costoTrabajoLote = horas * valorHora;
     var costoEmpaqueLote = empaque * unidades;
     var costoLote = ingredientes + costoTrabajoLote + costoEmpaqueLote + otros;
 
     var costoUnidad = costoLote / unidades;
     var gananciaUnidad = precio - costoUnidad;
     var margen = gananciaUnidad / precio;            // fracción (puede ser < 0)
-    var contoTrabajo = minutos > 0 && valorHora > 0;
+    var contoTrabajo = horas > 0 && valorHora > 0;
     var banda = bandaDeMargen(margen);
 
     // Precio para alcanzar un margen sano (TARGET_MARGIN).

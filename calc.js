@@ -33,8 +33,8 @@
       "f.ingredientesHelp": "Todo lo que usaste en esta tanda.",
       "f.unidades": "¿Cuántas unidades te rinde?",
       "f.unidadesHelp": "1 torta, 12 cupcakes, 24 galletas…",
-      "f.horas": "¿Cuánto tiempo te tomó?",
-      "f.horasUnit": "(horas)",
+      "f.horas": "¿Cuánto tiempo invertiste en hacer la torta?",
+      "f.horasUnit": "(minutos)",
       "f.horasHelp": "Incluye ir al súper, hornear, decorar, limpiar.",
       "f.valorHora": "¿Cuánto vale tu hora?",
       "f.valorHoraHelp": "Lo que te gustaría ganar por hora de trabajo.",
@@ -102,8 +102,8 @@
       "f.ingredientesHelp": "Everything you used for this batch.",
       "f.unidades": "How many units does it make?",
       "f.unidadesHelp": "1 cake, 12 cupcakes, 24 cookies…",
-      "f.horas": "How long did it take?",
-      "f.horasUnit": "(hours)",
+      "f.horas": "How much time did you put into the cake?",
+      "f.horasUnit": "(minutes)",
       "f.horasHelp": "Include grocery run, baking, decorating, cleanup.",
       "f.valorHora": "What's your hour worth?",
       "f.valorHoraHelp": "What you'd like to earn per hour of work.",
@@ -277,7 +277,7 @@
       nombre: val("nombre").trim(),
       ingredientes: val("ingredientes"),
       unidades: val("unidades"),
-      horas: val("horas"),
+      minutos: val("minutos"),
       valorHora: val("valorHora"),
       empaque: val("empaque"),
       otros: val("otros"),
@@ -390,7 +390,7 @@
   function recalcConTiempo() {
     var el = $("valorHora");
     if (el && (!el.value || parseFloat(el.value) <= 0)) el.value = String(VALOR_HORA_SUG);
-    if ($("horas") && (!$("horas").value || parseFloat($("horas").value) <= 0)) $("horas").value = "2";
+    if ($("minutos") && (!$("minutos").value || parseFloat($("minutos").value) <= 0)) $("minutos").value = "120";
     calcular();
   }
 

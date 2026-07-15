@@ -41,8 +41,10 @@
   }
 
   /* scoreReceta(input) → resultado.
-     input = { nombre, ingredientes, unidades, horas, valorHora, empaque,
+     input = { nombre, ingredientes, unidades, minutos, valorHora, empaque,
                otros, precio }
+     Nota: `minutos` es el tiempo invertido en minutos; `valorHora` sigue siendo
+     la tarifa por HORA → el costo de trabajo es (minutos/60) × valorHora.
      Devuelve { ok:false, error } si faltan datos imprescindibles
      (unidades >= 1 y precio > 0); de lo contrario { ok:true, ... }. */
   function scoreReceta(input) {
@@ -50,7 +52,7 @@
 
     var ingredientes = num(input.ingredientes);
     var unidades = num(input.unidades);
-    var horas = num(input.horas);
+    var minutos = num(input.minutos);
     var valorHora = num(input.valorHora);
     var empaque = num(input.empaque);
     var otros = num(input.otros);
@@ -63,14 +65,14 @@
       return { ok: false, error: "precio" };      // sin precio no hay veredicto
     }
 
-    var costoTrabajoLote = horas * valorHora;
+    var costoTrabajoLote = (minutos / 60) * valorHora;
     var costoEmpaqueLote = empaque * unidades;
     var costoLote = ingredientes + costoTrabajoLote + costoEmpaqueLote + otros;
 
     var costoUnidad = costoLote / unidades;
     var gananciaUnidad = precio - costoUnidad;
     var margen = gananciaUnidad / precio;            // fracción (puede ser < 0)
-    var contoTrabajo = horas > 0 && valorHora > 0;
+    var contoTrabajo = minutos > 0 && valorHora > 0;
     var banda = bandaDeMargen(margen);
 
     // Precio para alcanzar un margen sano (TARGET_MARGIN).

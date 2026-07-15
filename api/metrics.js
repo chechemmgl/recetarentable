@@ -109,7 +109,7 @@ module.exports = async function handler(req, res) {
       no_time_pct:        live ? num(d.no_time_pct) : null,
       // instrumento
       unidades_mediana:   live ? num(d.unidades_mediana) : null,
-      horas_mediana:      live ? num(d.horas_mediana) : null,
+      minutos_mediana:    live ? num(d.minutos_mediana) : null,
       opcionales_pct:     live ? num(d.opcionales_pct) : null,
       // audiencia
       reincidentes:       live ? (d.reincidentes != null ? d.reincidentes : 0) : null,

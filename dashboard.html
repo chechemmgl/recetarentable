@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Panel · Calculadora · Modo Repostera</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:ital,wght@0,400;0,600;1,400&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--cream); color: var(--chocolate); font-family: var(--font-body); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: clamp(20px, 4vw, 40px); }
+
+  header { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    border-bottom: 1px solid var(--cream-dark); padding-bottom: 20px; margin-bottom: 28px; }
+  .brand { font-family: var(--font-script); color: var(--terracotta-dark); font-size: 28px; line-height: 1; }
+  .brand small { display: block; font-family: var(--font-body); font-weight: 600; letter-spacing: .04em;
+    text-transform: uppercase; font-size: 11px; color: var(--chocolate-muted); margin-top: 4px; }
+  h1 { font-family: var(--font-display); font-weight: 600; font-size: var(--text-2xl); margin: 6px 0 0; }
+  .head-right { text-align: right; font-size: var(--text-sm); color: var(--chocolate-muted); }
+  .src { display: inline-flex; align-items: center; gap: 7px; margin-bottom: 6px; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--chocolate-muted); }
+  .dot.live { background: var(--pistachio-dark); box-shadow: 0 0 0 3px var(--pistachio-light); }
+  .dot.pending { background: var(--terracotta); box-shadow: 0 0 0 3px var(--terracotta-light); }
+  .logout { display: inline-block; margin-top: 8px; font-size: var(--text-xs); letter-spacing: .1em;
+    text-transform: uppercase; color: var(--chocolate-muted); background: none; border: 0; cursor: pointer; }
+  .logout:hover { color: var(--terracotta-dark); }
+
+  .grid { display: grid; gap: 18px; }
+  .heroes { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-bottom: 18px; }
+  .tiles { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-bottom: 26px; }
+
+  .card { background: #fff; border: 1px solid var(--cream-dark); border-radius: var(--radius-lg);
+    padding: 24px 24px 22px; box-shadow: var(--shadow-sm); }
+  .card.hero { padding: 30px 28px; }
+  .eyebrow { font-size: var(--text-xs); letter-spacing: .12em; text-transform: uppercase;
+    color: var(--chocolate-muted); margin: 0 0 10px; }
+  .stat { font-family: var(--font-display); font-weight: 600; line-height: 1; letter-spacing: -.01em; }
+  .hero .stat { font-size: clamp(44px, 7vw, 68px); color: var(--terracotta-dark); }
+  .tile .stat { font-size: var(--text-3xl); color: var(--chocolate); }
+  .sub { font-size: var(--text-sm); color: var(--chocolate-muted); margin-top: 10px; }
+
+  .panel { background: #fff; border: 1px solid var(--cream-dark); border-radius: var(--radius-lg);
+    padding: 24px 26px; box-shadow: var(--shadow-sm); margin-bottom: 18px; }
+  .panel h2 { font-family: var(--font-display); font-weight: 600; font-size: var(--text-lg); margin: 0 0 4px; }
+  .panel .hint { font-size: var(--text-sm); color: var(--chocolate-muted); margin: 0 0 18px; }
+
+  .band-row { display: grid; grid-template-columns: 130px 1fr 48px; align-items: center; gap: 12px; margin: 9px 0; }
+  .band-label { font-size: var(--text-sm); }
+  .band-track { background: var(--cream); border-radius: var(--radius-pill); height: 22px; overflow: hidden; }
+  .band-fill { height: 100%; border-radius: var(--radius-pill); min-width: 2px; transition: width .5s var(--ease-out); }
+  .band-val { font-size: var(--text-sm); font-weight: 600; text-align: right; }
+  .b-perdiendo { background: #B84A3A; } .b-regalando { background: var(--terracotta); }
+  .b-ajustado  { background: #E0A458; } .b-sano      { background: var(--pistachio); }
+  .b-fuerte    { background: var(--pistachio-dark); }
+  .band-swatch { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 8px; vertical-align: middle; }
+
+  .days { display: flex; align-items: flex-end; gap: 6px; height: 130px; padding-top: 8px; }
+  .day { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 0; }
+  .day-bar { width: 100%; max-width: 34px; background: var(--terracotta-light); border-radius: 5px 5px 0 0;
+    min-height: 3px; transition: height .5s var(--ease-out); }
+  .day-bar.has { background: var(--terracotta); }
+  .day-cap { font-size: 10px; color: var(--chocolate-muted); white-space: nowrap; }
+  .empty { font-size: var(--text-sm); color: var(--chocolate-muted); font-style: italic; padding: 20px 0; }
+
+  .note { font-size: var(--text-sm); color: var(--chocolate-muted); margin-top: 4px; }
+  .note b { color: var(--chocolate); font-weight: 600; }
+  .dash { color: var(--chocolate-muted); }
+  footer { margin-top: 30px; font-size: var(--text-xs); color: var(--chocolate-muted); text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="brand">RecetaRentable by<small>Modo Repostera</small></div>
+      <h1>Panel · Calculadora</h1>
+    </div>
+    <div class="head-right">
+      <div class="src"><span class="dot" id="src-dot"></span><span id="src-note">Cargando…</span></div>
+      <div id="updated">&nbsp;</div>
+      <button class="logout" id="logout">Salir</button>
+    </div>
+  </header>
+
+  <div class="grid heroes">
+    <div class="card hero">
+      <p class="eyebrow">Cálculos completados</p>
+      <div class="stat" id="m-completados">—</div>
+      <p class="sub" id="m-completados-sub">&nbsp;</p>
+    </div>
+    <div class="card hero">
+      <p class="eyebrow">Tasa de completación</p>
+      <div class="stat" id="m-rate">—</div>
+      <p class="sub" id="m-rate-sub">de quienes empezaron el formulario</p>
+    </div>
+  </div>
+
+  <div class="grid tiles">
+    <div class="card tile">
+      <p class="eyebrow">Formularios iniciados</p>
+      <div class="stat" id="m-started">—</div>
+      <p class="sub">sesiones que tocaron la calculadora</p>
+    </div>
+    <div class="card tile">
+      <p class="eyebrow">Desbloqueo de email</p>
+      <div class="stat" id="m-unlock">—</div>
+      <p class="sub">dejaron su correo tras completar</p>
+    </div>
+    <div class="card tile">
+      <p class="eyebrow">No contó su tiempo</p>
+      <div class="stat" id="m-notime">—</div>
+      <p class="sub">calcularon con su mano de obra en $0</p>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Distribución de veredictos</h2>
+    <p class="hint">En qué banda de margen cae cada receta calculada.</p>
+    <div id="bands"></div>
+  </div>
+
+  <div class="panel">
+    <h2>Actividad de los últimos 14 días</h2>
+    <p class="hint">Cálculos completados por día.</p>
+    <div id="days-wrap"></div>
+  </div>
+
+  <p class="note" id="sample-note"></p>
+
+  <footer>Panel interno · datos anónimos de la calculadora · by Modo Repostera</footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var BANDS = [
+    { key: "perdiendo", label: "Perdiendo plata", cls: "b-perdiendo" },
+    { key: "regalando", label: "Casi regalando", cls: "b-regalando" },
+    { key: "ajustado",  label: "Ajustado",        cls: "b-ajustado" },
+    { key: "sano",      label: "Margen sano",     cls: "b-sano" },
+    { key: "fuerte",    label: "Margen fuerte",   cls: "b-fuerte" }
+  ];
+
+  function $(id) { return document.getElementById(id); }
+  function isNum(v) { return typeof v === "number" && isFinite(v); }
+  function fmtInt(v) { return isNum(v) ? v.toLocaleString("es-ES") : null; }
+  function fmtPct(frac) { return isNum(frac) ? Math.round(frac * 100) + "%" : null; }
+  // null → "—" (sin conector) · 0 → "0" (conector vivo, valor real cero)
+  function setStat(id, text) {
+    var el = $(id);
+    if (text === null || text === undefined) { el.innerHTML = '<span class="dash">—</span>'; }
+    else { el.textContent = text; }
+  }
+
+  function renderBands(bands) {
+    var host = $("bands");
+    host.innerHTML = "";
+    var counts = BANDS.map(function (b) { return (bands && bands[b.key]) || 0; });
+    var total = counts.reduce(function (a, b) { return a + b; }, 0);
+    if (total === 0) {
+      host.innerHTML = '<p class="empty">Aún no hay cálculos registrados para mostrar el reparto.</p>';
+      return;
+    }
+    BANDS.forEach(function (b, i) {
+      var n = counts[i];
+      var pct = total ? (n / total * 100) : 0;
+      var row = document.createElement("div");
+      row.className = "band-row";
+      row.innerHTML =
+        '<span class="band-label"><span class="band-swatch ' + b.cls + '"></span>' + b.label + '</span>' +
+        '<span class="band-track"><span class="band-fill ' + b.cls + '" style="width:' + pct.toFixed(1) + '%"></span></span>' +
+        '<span class="band-val">' + n + '</span>';
+      host.appendChild(row);
+    });
+  }
+
+  function renderDays(daily) {
+    var host = $("days-wrap");
+    host.innerHTML = "";
+    if (!daily || !daily.length) {
+      host.innerHTML = '<p class="empty">Sin cálculos en los últimos 14 días.</p>';
+      return;
+    }
+    var max = daily.reduce(function (m, d) { return Math.max(m, d.completados || 0); }, 0) || 1;
+    var chart = document.createElement("div");
+    chart.className = "days";
+    daily.forEach(function (d) {
+      var n = d.completados || 0;
+      var h = Math.round((n / max) * 100);
+      var cap = (d.date || "").slice(5); // MM-DD
+      var col = document.createElement("div");
+      col.className = "day";
+      col.innerHTML =
+        '<div class="day-bar ' + (n > 0 ? 'has' : '') + '" style="height:' + h + '%" title="' + n + '"></div>' +
+        '<span class="day-cap">' + cap + '</span>';
+      chart.appendChild(col);
+    });
+    host.appendChild(chart);
+  }
+
+  function render(payload) {
+    var m = payload.metrics || {};
+    var s = (payload.sources && payload.sources.calc) || {};
+
+    var dot = $("src-dot");
+    dot.className = "dot " + (s.status === "live" ? "live" : "pending");
+    $("src-note").textContent = s.note || "";
+
+    if (payload.updated_at) {
+      var u = new Date(payload.updated_at);
+      $("updated").textContent = "Actualizado " + u.toLocaleString("es-ES");
+    }
+
+    setStat("m-completados", fmtInt(m.completados));
+    $("m-completados-sub").textContent =
+      m.latest
+        ? "Último: " + new Date(m.latest).toLocaleDateString("es-ES")
+        : " ";
+
+    setStat("m-rate", fmtPct(m.completion_rate));
+    if (isNum(m.completed_sessions) && isNum(m.started_sessions)) {
+      $("m-rate-sub").textContent = m.completed_sessions + " de " + m.started_sessions + " que empezaron";
+    }
+
+    setStat("m-started", fmtInt(m.started_sessions));
+    setStat("m-unlock", fmtPct(m.unlock_rate));
+    setStat("m-notime", fmtPct(m.no_time_pct));
+
+    renderBands(m.bands);
+    renderDays(m.daily);
+
+    // Nota honesta de tamaño de muestra
+    var note = $("sample-note");
+    if (isNum(m.completados)) {
+      if (m.completados === 0) {
+        note.innerHTML = "Aún no hay datos registrados. Los números empezarán a moverse en cuanto entren cálculos nuevos.";
+      } else if (m.completados < 30) {
+        note.innerHTML = "Muestra pequeña (<b>" + m.completados + "</b> cálculos): útil para ver que todo funciona, pero aún no concluyente. Los porcentajes se estabilizan con más volumen.";
+      } else {
+        note.innerHTML = "";
+      }
+    }
+  }
+
+  function load() {
+    fetch("/api/metrics", { credentials: "same-origin", headers: { "accept": "application/json" } })
+      .then(function (r) {
+        if (r.status === 401) { location = "/login.html?next=/dashboard.html"; return null; }
+        if (!r.ok) throw new Error("http_" + r.status);
+        return r.json();
+      })
+      .then(function (data) { if (data) render(data); })
+      .catch(function () {
+        $("src-note").textContent = "No se pudo cargar. Reintenta en un momento.";
+      });
+  }
+
+  $("logout").addEventListener("click", function () {
+    fetch("/api/logout", { method: "POST", credentials: "same-origin" })
+      .then(function () { location = "/login.html"; })
+      .catch(function () { location = "/login.html"; });
+  });
+
+  load();
+})();
+</script>
+</body>
+</html>

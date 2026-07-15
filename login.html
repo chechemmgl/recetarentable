@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Entrar · Panel · Modo Repostera</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:ital,wght@0,400;0,600;1,400&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    background: var(--cream); color: var(--chocolate); font-family: var(--font-body); padding: 24px;
+  }
+  .card {
+    width: 100%; max-width: 380px; padding: 40px 36px;
+    background: #fff; border: 1px solid var(--cream-dark);
+    border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
+  }
+  .brand { font-family: var(--font-script); color: var(--terracotta-dark); font-size: 26px; line-height: 1; }
+  .brand small { display: block; font-family: var(--font-body); font-weight: 600; letter-spacing: .04em;
+    text-transform: uppercase; font-size: 11px; color: var(--chocolate-muted); margin-top: 4px; }
+  h1 { font-family: var(--font-display); font-size: var(--text-xl); margin: 20px 0 24px; font-weight: 600; }
+  label { display: block; font-size: var(--text-xs); letter-spacing: .12em; text-transform: uppercase;
+    color: var(--chocolate-muted); margin-bottom: 8px; }
+  input {
+    width: 100%; padding: 13px 14px; background: var(--cream); border: 1px solid var(--cream-dark);
+    border-radius: var(--radius-sm); color: var(--chocolate); font-size: var(--text-base);
+    font-family: var(--font-body); outline: 0;
+  }
+  input:focus { border-color: var(--terracotta); background: #fff; }
+  button {
+    width: 100%; margin-top: 18px; padding: 13px; background: var(--terracotta-dark); color: #fff;
+    border: 0; border-radius: var(--radius-pill); font-weight: 600; font-size: var(--text-base);
+    font-family: var(--font-body); cursor: pointer; transition: background .2s var(--ease-out);
+  }
+  button:hover { background: var(--chocolate); }
+  button:disabled { opacity: .6; cursor: default; }
+  .err { color: var(--terracotta-dark); font-size: var(--text-sm); min-height: 1.2em; margin-top: 10px; }
+</style>
+</head>
+<body>
+  <main class="card">
+    <div class="brand">RecetaRentable by<small>Modo Repostera · Panel</small></div>
+    <h1>Entra a tu panel</h1>
+    <form id="f">
+      <label for="pw">Contraseña</label>
+      <input id="pw" type="password" required autocomplete="current-password" autofocus>
+      <div class="err" id="e"></div>
+      <button id="b" type="submit">Entrar</button>
+    </form>
+  </main>
+<script>
+  var f = document.getElementById('f'), e = document.getElementById('e'), b = document.getElementById('b');
+  function safeNext() {
+    var n = new URLSearchParams(location.search).get('next') || '/dashboard.html';
+    // solo rutas internas — evita open-redirect
+    return (n.charAt(0) === '/' && n.charAt(1) !== '/') ? n : '/dashboard.html';
+  }
+  f.addEventListener('submit', async function (ev) {
+    ev.preventDefault(); e.textContent = ''; b.disabled = true; b.textContent = 'Verificando…';
+    try {
+      var r = await fetch('/api/login', {
+        method: 'POST', headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ password: document.getElementById('pw').value }),
+        credentials: 'same-origin'
+      });
+      if (r.ok) { location = safeNext(); }
+      else {
+        e.textContent = r.status === 429 ? 'Demasiados intentos. Espera un minuto.' : 'Contraseña incorrecta.';
+        b.disabled = false; b.textContent = 'Entrar';
+      }
+    } catch (err) { e.textContent = 'Error de red.'; b.disabled = false; b.textContent = 'Entrar'; }
+  });
+</script>
+</body>
+</html>

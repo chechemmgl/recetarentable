@@ -423,7 +423,7 @@
     var txt = CUR === "es"
       ? "Calculé " + recipe + " en RecetaRentable: " + fmtPct(r.margen) + " de margen. Mira si la tuya te deja ganancia 👉"
       : "I ran " + recipe + " through RecetaRentable: " + fmtPct(r.margen) + " margin. See if yours is profitable 👉";
-    var url = "https://recetarentable.vercel.app/calculadora";
+    var url = "https://recetarentable.vercel.app/calculadora.html";
     recordEvent("cta_clicked", { kind: "share" });
     if (navigator.share) {
       navigator.share({ text: txt, url: url }).catch(function () {});

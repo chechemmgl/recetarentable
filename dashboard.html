@@ -29,53 +29,71 @@
     text-transform: uppercase; color: var(--chocolate-muted); background: none; border: 0; cursor: pointer; }
   .logout:hover { color: var(--terracotta-dark); }
 
+  .section-label { font-family: var(--font-display); font-weight: 600; font-size: var(--text-md);
+    color: var(--chocolate-light); margin: 30px 0 14px; }
+  .section-label:first-of-type { margin-top: 6px; }
+
   .grid { display: grid; gap: 18px; }
-  .heroes { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-bottom: 18px; }
-  .tiles { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-bottom: 26px; }
+  .heroes { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .tiles-3 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+  .tiles-2 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 
   .card { background: #fff; border: 1px solid var(--cream-dark); border-radius: var(--radius-lg);
-    padding: 24px 24px 22px; box-shadow: var(--shadow-sm); }
+    padding: 22px 22px 20px; box-shadow: var(--shadow-sm); }
   .card.hero { padding: 30px 28px; }
-  .eyebrow { font-size: var(--text-xs); letter-spacing: .12em; text-transform: uppercase;
+  .eyebrow { font-size: var(--text-xs); letter-spacing: .1em; text-transform: uppercase;
     color: var(--chocolate-muted); margin: 0 0 10px; }
   .stat { font-family: var(--font-display); font-weight: 600; line-height: 1; letter-spacing: -.01em; }
-  .hero .stat { font-size: clamp(44px, 7vw, 68px); color: var(--terracotta-dark); }
+  .hero .stat { font-size: clamp(42px, 6.5vw, 64px); color: var(--terracotta-dark); }
   .tile .stat { font-size: var(--text-3xl); color: var(--chocolate); }
-  .sub { font-size: var(--text-sm); color: var(--chocolate-muted); margin-top: 10px; }
+  .tile.pain .stat { color: var(--terracotta-dark); }
+  .sub { font-size: var(--text-sm); color: var(--chocolate-muted); margin-top: 9px; }
+  .tile-src { font-size: var(--text-xs); margin-top: 8px; display: inline-flex; align-items: center; gap: 6px; }
 
   .panel { background: #fff; border: 1px solid var(--cream-dark); border-radius: var(--radius-lg);
-    padding: 24px 26px; box-shadow: var(--shadow-sm); margin-bottom: 18px; }
+    padding: 24px 26px; box-shadow: var(--shadow-sm); }
   .panel h2 { font-family: var(--font-display); font-weight: 600; font-size: var(--text-lg); margin: 0 0 4px; }
   .panel .hint { font-size: var(--text-sm); color: var(--chocolate-muted); margin: 0 0 18px; }
 
-  .band-row { display: grid; grid-template-columns: 130px 1fr 48px; align-items: center; gap: 12px; margin: 9px 0; }
-  .band-label { font-size: var(--text-sm); }
-  .band-track { background: var(--cream); border-radius: var(--radius-pill); height: 22px; overflow: hidden; }
-  .band-fill { height: 100%; border-radius: var(--radius-pill); min-width: 2px; transition: width .5s var(--ease-out); }
-  .band-val { font-size: var(--text-sm); font-weight: 600; text-align: right; }
+  /* barras genéricas */
+  .bar-row { display: grid; align-items: center; gap: 12px; margin: 9px 0; }
+  .bar-track { background: var(--cream); border-radius: var(--radius-pill); height: 22px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: var(--radius-pill); min-width: 2px; transition: width .5s var(--ease-out); }
+  .bar-val { font-size: var(--text-sm); font-weight: 600; text-align: right; }
+  .bar-label { font-size: var(--text-sm); }
+
+  .band-row { grid-template-columns: 130px 1fr 48px; }
   .b-perdiendo { background: #B84A3A; } .b-regalando { background: var(--terracotta); }
   .b-ajustado  { background: #E0A458; } .b-sano      { background: var(--pistachio); }
   .b-fuerte    { background: var(--pistachio-dark); }
   .band-swatch { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 8px; vertical-align: middle; }
 
-  .receta-row { display: grid; grid-template-columns: 26px minmax(90px, 200px) 1fr 40px; align-items: center;
-    gap: 12px; margin: 9px 0; }
+  .receta-row { grid-template-columns: 26px minmax(90px, 200px) 1fr 40px; }
   .receta-rank { font-family: var(--font-display); font-weight: 600; color: var(--terracotta-dark);
     text-align: center; font-size: var(--text-md); }
-  .receta-name { font-size: var(--text-sm); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .receta-fill { background: var(--terracotta); }
+  .receta-name, .ref-name { font-size: var(--text-sm); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .fill-terra { background: var(--terracotta); }
+  .fill-pist { background: var(--pistachio-dark); }
+
+  .funnel-row { grid-template-columns: 150px 1fr 96px; }
+  .ref-row { grid-template-columns: minmax(120px, 240px) 1fr 40px; }
 
   .days { display: flex; align-items: flex-end; gap: 6px; height: 130px; padding-top: 8px; }
   .day { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 0; }
-  .day-bar { width: 100%; max-width: 34px; background: var(--terracotta-light); border-radius: 5px 5px 0 0;
+  .day-bar { width: 100%; max-width: 40px; background: var(--terracotta-light); border-radius: 5px 5px 0 0;
     min-height: 3px; transition: height .5s var(--ease-out); }
   .day-bar.has { background: var(--terracotta); }
   .day-cap { font-size: 10px; color: var(--chocolate-muted); white-space: nowrap; }
-  .empty { font-size: var(--text-sm); color: var(--chocolate-muted); font-style: italic; padding: 20px 0; }
 
-  .note { font-size: var(--text-sm); color: var(--chocolate-muted); margin-top: 4px; }
+  .lang-split { display: flex; gap: 18px; align-items: baseline; }
+  .lang-split .li { font-family: var(--font-display); font-weight: 600; font-size: var(--text-xl); }
+  .lang-split .lc { font-size: var(--text-sm); color: var(--chocolate-muted); margin-left: 4px; }
+
+  .empty { font-size: var(--text-sm); color: var(--chocolate-muted); font-style: italic; padding: 18px 0; }
+  .note { font-size: var(--text-sm); color: var(--chocolate-muted); margin-top: 18px; }
   .note b { color: var(--chocolate); font-weight: 600; }
   .dash { color: var(--chocolate-muted); }
+  .stack { display: grid; gap: 18px; }
   footer { margin-top: 30px; font-size: var(--text-xs); color: var(--chocolate-muted); text-align: center; }
 </style>
 </head>
@@ -93,6 +111,7 @@
     </div>
   </header>
 
+  <!-- Núcleo -->
   <div class="grid heroes">
     <div class="card hero">
       <p class="eyebrow">Cálculos completados</p>
@@ -106,44 +125,112 @@
     </div>
   </div>
 
-  <div class="grid tiles">
-    <div class="card tile">
-      <p class="eyebrow">Formularios iniciados</p>
-      <div class="stat" id="m-started">—</div>
-      <p class="sub">sesiones que tocaron la calculadora</p>
+  <!-- El dolor -->
+  <div class="section-label">El dolor (para tus posts)</div>
+  <div class="grid tiles-3">
+    <div class="card tile pain">
+      <p class="eyebrow">Pierde o casi regala</p>
+      <div class="stat" id="m-pain">—</div>
+      <p class="sub">de las recetas caen en "perdiendo" o "regalando"</p>
     </div>
     <div class="card tile">
-      <p class="eyebrow">Desbloqueo de email</p>
-      <div class="stat" id="m-unlock">—</div>
-      <p class="sub">dejaron su correo tras completar</p>
+      <p class="eyebrow">Margen típico</p>
+      <div class="stat" id="m-margen">—</div>
+      <p class="sub">margen mediano de una receta calculada</p>
     </div>
-    <div class="card tile">
-      <p class="eyebrow">No contó su tiempo</p>
-      <div class="stat" id="m-notime">—</div>
-      <p class="sub">calcularon con su mano de obra en $0</p>
+    <div class="card tile pain">
+      <p class="eyebrow">Se sub-cobran</p>
+      <div class="stat" id="m-subcobro">—</div>
+      <p class="sub">por debajo de un precio sano, en promedio</p>
     </div>
   </div>
 
-  <div class="panel">
-    <h2>Distribución de veredictos</h2>
-    <p class="hint">En qué banda de margen cae cada receta calculada.</p>
-    <div id="bands"></div>
+  <!-- Embudo -->
+  <div class="section-label">Embudo</div>
+  <div class="stack">
+    <div class="panel">
+      <h2>Del formulario al tool</h2>
+      <p class="hint">Cuántas sesiones llegan a cada paso.</p>
+      <div id="funnel"></div>
+      <p class="note" id="share-note"></p>
+    </div>
   </div>
 
-  <div class="panel">
-    <h2>Recetas más calculadas</h2>
-    <p class="hint">Qué reposteras escriben en "¿Qué receta?" al calcular. (Es un campo opcional — solo cuenta las que pusieron nombre.)</p>
-    <div id="recetas"></div>
+  <!-- Contenido -->
+  <div class="section-label">Qué calculan</div>
+  <div class="stack">
+    <div class="panel">
+      <h2>Distribución de veredictos</h2>
+      <p class="hint">En qué banda de margen cae cada receta.</p>
+      <div id="bands"></div>
+    </div>
+    <div class="panel">
+      <h2>Recetas más calculadas</h2>
+      <p class="hint">Qué escriben en "¿Qué receta?" (campo opcional — solo cuenta las que pusieron nombre).</p>
+      <div id="recetas"></div>
+    </div>
   </div>
 
-  <div class="panel">
-    <h2>Actividad de los últimos 14 días</h2>
-    <p class="hint">Cálculos completados por día.</p>
-    <div id="days-wrap"></div>
+  <!-- El instrumento -->
+  <div class="section-label">Cómo lo usan</div>
+  <div class="grid tiles-3">
+    <div class="card tile">
+      <p class="eyebrow">Rendimiento típico</p>
+      <div class="stat" id="m-unidades">—</div>
+      <p class="sub">unidades por receta (mediana)</p>
+    </div>
+    <div class="card tile">
+      <p class="eyebrow">Tiempo típico</p>
+      <div class="stat" id="m-horas">—</div>
+      <p class="sub">horas por receta (mediana)</p>
+    </div>
+    <div class="card tile">
+      <p class="eyebrow">Llenan campos opcionales</p>
+      <div class="stat" id="m-opcionales">—</div>
+      <p class="sub">suman empaque u otros gastos</p>
+    </div>
+  </div>
+
+  <!-- Audiencia -->
+  <div class="section-label">Audiencia</div>
+  <div class="grid tiles-3">
+    <div class="card tile">
+      <p class="eyebrow">Idioma</p>
+      <div class="lang-split" id="m-lang"><span class="dash stat" style="font-size:var(--text-3xl)">—</span></div>
+      <p class="sub">en qué idioma calculan</p>
+    </div>
+    <div class="card tile">
+      <p class="eyebrow">Prueban varias recetas</p>
+      <div class="stat" id="m-reincidentes">—</div>
+      <p class="sub">sesiones con más de un cálculo</p>
+    </div>
+    <div class="card tile">
+      <p class="eyebrow">Emails captados</p>
+      <div class="stat" id="m-emails">—</div>
+      <p class="sub">suscriptoras en Kit</p>
+      <span class="tile-src" id="emails-src"></span>
+    </div>
+  </div>
+
+  <div class="stack" style="margin-top:18px">
+    <div class="panel">
+      <h2>Fuentes de tráfico</h2>
+      <p class="hint">De dónde llegan a la calculadora (según el referrer).</p>
+      <div id="refs"></div>
+    </div>
+    <div class="panel">
+      <h2>Cuándo calculan</h2>
+      <p class="hint">Cálculos por día de la semana (horario UTC — referencia general).</p>
+      <div id="dow-wrap"></div>
+    </div>
+    <div class="panel">
+      <h2>Actividad de los últimos 14 días</h2>
+      <p class="hint">Cálculos completados por día.</p>
+      <div id="days-wrap"></div>
+    </div>
   </div>
 
   <p class="note" id="sample-note"></p>
-
   <footer>Panel interno · datos anónimos de la calculadora · by Modo Repostera</footer>
 </div>
 
@@ -157,12 +244,15 @@
     { key: "sano",      label: "Margen sano",     cls: "b-sano" },
     { key: "fuerte",    label: "Margen fuerte",   cls: "b-fuerte" }
   ];
+  var DOW = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
 
   function $(id) { return document.getElementById(id); }
   function isNum(v) { return typeof v === "number" && isFinite(v); }
   function fmtInt(v) { return isNum(v) ? v.toLocaleString("es-ES") : null; }
+  function fmtNum(v) { return isNum(v) ? v.toLocaleString("es-ES") : null; }
   function fmtPct(frac) { return isNum(frac) ? Math.round(frac * 100) + "%" : null; }
-  // null → "—" (sin conector) · 0 → "0" (conector vivo, valor real cero)
+  function esc(s) { return String(s == null ? "" : s).replace(/[<>&]/g, ""); }
+  // null → "—" (sin conector) · 0 → "0" (conector vivo, valor real 0)
   function setStat(id, text) {
     var el = $(id);
     if (text === null || text === undefined) { el.innerHTML = '<span class="dash">—</span>'; }
@@ -170,65 +260,112 @@
   }
 
   function renderBands(bands) {
-    var host = $("bands");
-    host.innerHTML = "";
+    var host = $("bands"); host.innerHTML = "";
     var counts = BANDS.map(function (b) { return (bands && bands[b.key]) || 0; });
     var total = counts.reduce(function (a, b) { return a + b; }, 0);
-    if (total === 0) {
-      host.innerHTML = '<p class="empty">Aún no hay cálculos registrados para mostrar el reparto.</p>';
-      return;
-    }
+    if (total === 0) { host.innerHTML = '<p class="empty">Aún no hay cálculos para mostrar el reparto.</p>'; return; }
     BANDS.forEach(function (b, i) {
-      var n = counts[i];
-      var pct = total ? (n / total * 100) : 0;
+      var n = counts[i], pct = total ? (n / total * 100) : 0;
       var row = document.createElement("div");
-      row.className = "band-row";
+      row.className = "bar-row band-row";
       row.innerHTML =
-        '<span class="band-label"><span class="band-swatch ' + b.cls + '"></span>' + b.label + '</span>' +
-        '<span class="band-track"><span class="band-fill ' + b.cls + '" style="width:' + pct.toFixed(1) + '%"></span></span>' +
-        '<span class="band-val">' + n + '</span>';
+        '<span class="bar-label"><span class="band-swatch ' + b.cls + '"></span>' + b.label + '</span>' +
+        '<span class="bar-track"><span class="bar-fill ' + b.cls + '" style="width:' + pct.toFixed(1) + '%"></span></span>' +
+        '<span class="bar-val">' + n + '</span>';
       host.appendChild(row);
     });
   }
 
   function renderRecetas(list) {
-    var host = $("recetas");
-    host.innerHTML = "";
+    var host = $("recetas"); host.innerHTML = "";
     if (!list || !list.length) {
-      host.innerHTML = '<p class="empty">Nadie ha puesto nombre de receta todavía. Aparecerán aquí en cuanto empiecen a llenar ese campo.</p>';
+      host.innerHTML = '<p class="empty">Nadie ha puesto nombre de receta todavía. Aparecerán aquí como ranking en cuanto empiecen a llenar ese campo.</p>';
       return;
     }
     var max = list.reduce(function (m, r) { return Math.max(m, r.n || 0); }, 0) || 1;
     list.slice(0, 8).forEach(function (r, i) {
       var pct = ((r.n || 0) / max) * 100;
       var row = document.createElement("div");
-      row.className = "receta-row";
-      var name = (r.nombre || "").replace(/[<>&]/g, "");   // sanea texto libre
+      row.className = "bar-row receta-row";
       row.innerHTML =
         '<span class="receta-rank">' + (i + 1) + '</span>' +
-        '<span class="receta-name" title="' + name + '">' + name + '</span>' +
-        '<span class="band-track"><span class="band-fill receta-fill" style="width:' + pct.toFixed(1) + '%"></span></span>' +
-        '<span class="band-val">' + (r.n || 0) + '</span>';
+        '<span class="receta-name" title="' + esc(r.nombre) + '">' + esc(r.nombre) + '</span>' +
+        '<span class="bar-track"><span class="bar-fill fill-terra" style="width:' + pct.toFixed(1) + '%"></span></span>' +
+        '<span class="bar-val">' + (r.n || 0) + '</span>';
       host.appendChild(row);
     });
   }
 
+  function renderFunnel(m) {
+    var host = $("funnel"); host.innerHTML = "";
+    var steps = [
+      { label: "Iniciaron", n: m.started_sessions },
+      { label: "Completaron", n: m.completed_sessions },
+      { label: "Dejaron email", n: m.unlocked_sessions },
+      { label: "Clic al tool", n: m.tool_clicks }
+    ];
+    if (!isNum(m.started_sessions)) { host.innerHTML = '<p class="empty">Sin datos de embudo.</p>'; return; }
+    var max = steps.reduce(function (a, s) { return Math.max(a, isNum(s.n) ? s.n : 0); }, 0) || 1;
+    var base = isNum(m.started_sessions) && m.started_sessions > 0 ? m.started_sessions : null;
+    steps.forEach(function (s) {
+      var n = isNum(s.n) ? s.n : 0;
+      var pct = (n / max) * 100;
+      var rate = base ? " · " + Math.round(n / base * 100) + "%" : "";
+      var row = document.createElement("div");
+      row.className = "bar-row funnel-row";
+      row.innerHTML =
+        '<span class="bar-label">' + s.label + '</span>' +
+        '<span class="bar-track"><span class="bar-fill fill-terra" style="width:' + pct.toFixed(1) + '%"></span></span>' +
+        '<span class="bar-val">' + n + rate + '</span>';
+      host.appendChild(row);
+    });
+    var sn = $("share-note");
+    if (isNum(m.share_clicks)) {
+      sn.innerHTML = "Compartieron su resultado: <b>" + m.share_clicks + "</b>" +
+        (isNum(m.share_rate) ? " (" + Math.round(m.share_rate * 100) + "% de quienes completaron)" : "");
+    } else { sn.textContent = ""; }
+  }
+
+  function renderRefs(list) {
+    var host = $("refs"); host.innerHTML = "";
+    if (!list || !list.length) { host.innerHTML = '<p class="empty">Aún sin datos de origen.</p>'; return; }
+    var max = list.reduce(function (m, r) { return Math.max(m, r.n || 0); }, 0) || 1;
+    list.slice(0, 6).forEach(function (r) {
+      var pct = ((r.n || 0) / max) * 100;
+      var row = document.createElement("div");
+      row.className = "bar-row ref-row";
+      row.innerHTML =
+        '<span class="ref-name" title="' + esc(r.host) + '">' + esc(r.host) + '</span>' +
+        '<span class="bar-track"><span class="bar-fill fill-pist" style="width:' + pct.toFixed(1) + '%"></span></span>' +
+        '<span class="bar-val">' + (r.n || 0) + '</span>';
+      host.appendChild(row);
+    });
+  }
+
+  function renderDow(list) {
+    var host = $("dow-wrap"); host.innerHTML = "";
+    if (!list || !list.length) { host.innerHTML = '<p class="empty">Sin datos todavía.</p>'; return; }
+    var max = list.reduce(function (m, d) { return Math.max(m, d.n || 0); }, 0) || 1;
+    var chart = document.createElement("div"); chart.className = "days";
+    list.forEach(function (d) {
+      var n = d.n || 0, h = Math.round((n / max) * 100);
+      var col = document.createElement("div"); col.className = "day";
+      col.innerHTML =
+        '<div class="day-bar ' + (n > 0 ? 'has' : '') + '" style="height:' + h + '%" title="' + n + '"></div>' +
+        '<span class="day-cap">' + (DOW[d.dow] || d.dow) + '</span>';
+      chart.appendChild(col);
+    });
+    host.appendChild(chart);
+  }
+
   function renderDays(daily) {
-    var host = $("days-wrap");
-    host.innerHTML = "";
-    if (!daily || !daily.length) {
-      host.innerHTML = '<p class="empty">Sin cálculos en los últimos 14 días.</p>';
-      return;
-    }
+    var host = $("days-wrap"); host.innerHTML = "";
+    if (!daily || !daily.length) { host.innerHTML = '<p class="empty">Sin cálculos en los últimos 14 días.</p>'; return; }
     var max = daily.reduce(function (m, d) { return Math.max(m, d.completados || 0); }, 0) || 1;
-    var chart = document.createElement("div");
-    chart.className = "days";
+    var chart = document.createElement("div"); chart.className = "days";
     daily.forEach(function (d) {
-      var n = d.completados || 0;
-      var h = Math.round((n / max) * 100);
-      var cap = (d.date || "").slice(5); // MM-DD
-      var col = document.createElement("div");
-      col.className = "day";
+      var n = d.completados || 0, h = Math.round((n / max) * 100), cap = (d.date || "").slice(5);
+      var col = document.createElement("div"); col.className = "day";
       col.innerHTML =
         '<div class="day-bar ' + (n > 0 ? 'has' : '') + '" style="height:' + h + '%" title="' + n + '"></div>' +
         '<span class="day-cap">' + cap + '</span>';
@@ -237,48 +374,66 @@
     host.appendChild(chart);
   }
 
+  function renderLang(byLang) {
+    var host = $("m-lang");
+    var es = (byLang && byLang.es) || 0, en = (byLang && byLang.en) || 0;
+    var total = es + en;
+    if (total === 0) { host.innerHTML = '<span class="dash stat" style="font-size:var(--text-3xl)">—</span>'; return; }
+    host.innerHTML =
+      '<span class="li">ES <span class="lc">' + Math.round(es / total * 100) + '%</span></span>' +
+      '<span class="li">EN <span class="lc">' + Math.round(en / total * 100) + '%</span></span>';
+  }
+
   function render(payload) {
     var m = payload.metrics || {};
     var s = (payload.sources && payload.sources.calc) || {};
+    var se = (payload.sources && payload.sources.emails) || {};
 
-    var dot = $("src-dot");
-    dot.className = "dot " + (s.status === "live" ? "live" : "pending");
+    $("src-dot").className = "dot " + (s.status === "live" ? "live" : "pending");
     $("src-note").textContent = s.note || "";
-
     if (payload.updated_at) {
-      var u = new Date(payload.updated_at);
-      $("updated").textContent = "Actualizado " + u.toLocaleString("es-ES");
+      $("updated").textContent = "Actualizado " + new Date(payload.updated_at).toLocaleString("es-ES");
     }
 
+    // núcleo
     setStat("m-completados", fmtInt(m.completados));
-    $("m-completados-sub").textContent =
-      m.latest
-        ? "Último: " + new Date(m.latest).toLocaleDateString("es-ES")
-        : " ";
-
+    $("m-completados-sub").textContent = m.latest ? "Último: " + new Date(m.latest).toLocaleDateString("es-ES") : " ";
     setStat("m-rate", fmtPct(m.completion_rate));
     if (isNum(m.completed_sessions) && isNum(m.started_sessions)) {
       $("m-rate-sub").textContent = m.completed_sessions + " de " + m.started_sessions + " que empezaron";
     }
 
-    setStat("m-started", fmtInt(m.started_sessions));
-    setStat("m-unlock", fmtPct(m.unlock_rate));
-    setStat("m-notime", fmtPct(m.no_time_pct));
+    // dolor
+    setStat("m-pain", fmtPct(m.pain_pct));
+    setStat("m-margen", fmtPct(m.margen_mediano));
+    setStat("m-subcobro", fmtPct(m.sub_cobro_prom));
 
+    // instrumento
+    setStat("m-unidades", fmtNum(m.unidades_mediana));
+    setStat("m-horas", fmtNum(m.horas_mediana));
+    setStat("m-opcionales", fmtPct(m.opcionales_pct));
+
+    // audiencia
+    renderLang(m.by_lang);
+    setStat("m-reincidentes", fmtInt(m.reincidentes));
+    setStat("m-emails", fmtInt(m.emails_total));
+    var es2 = $("emails-src");
+    es2.innerHTML = '<span class="dot ' + (se.status === "live" ? "live" : "pending") + '"></span>' + esc(se.note || "");
+
+    // paneles
+    renderFunnel(m);
     renderBands(m.bands);
     renderRecetas(m.top_recetas);
+    renderRefs(m.top_referrers);
+    renderDow(m.by_dow);
     renderDays(m.daily);
 
-    // Nota honesta de tamaño de muestra
+    // nota de muestra
     var note = $("sample-note");
     if (isNum(m.completados)) {
-      if (m.completados === 0) {
-        note.innerHTML = "Aún no hay datos registrados. Los números empezarán a moverse en cuanto entren cálculos nuevos.";
-      } else if (m.completados < 30) {
-        note.innerHTML = "Muestra pequeña (<b>" + m.completados + "</b> cálculos): útil para ver que todo funciona, pero aún no concluyente. Los porcentajes se estabilizan con más volumen.";
-      } else {
-        note.innerHTML = "";
-      }
+      if (m.completados === 0) note.innerHTML = "Aún no hay datos registrados. Los números empezarán a moverse en cuanto entren cálculos nuevos.";
+      else if (m.completados < 30) note.innerHTML = "Muestra pequeña (<b>" + m.completados + "</b> cálculos): útil para ver que todo funciona, pero aún no concluyente. Los porcentajes se estabilizan con más volumen.";
+      else note.innerHTML = "";
     }
   }
 
@@ -290,9 +445,7 @@
         return r.json();
       })
       .then(function (data) { if (data) render(data); })
-      .catch(function () {
-        $("src-note").textContent = "No se pudo cargar. Reintenta en un momento.";
-      });
+      .catch(function () { $("src-note").textContent = "No se pudo cargar. Reintenta en un momento."; });
   }
 
   $("logout").addEventListener("click", function () {

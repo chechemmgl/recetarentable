@@ -11,8 +11,8 @@ const I18N = {
     "nav.cta": "Calcular mi primera receta →",
 
     "hero.tag": "✦ Hecho para reposteras como tú",
-    "hero.h1a": "¿Cuánto te costó hacer",
-    "hero.h1b": "esa torta de verdad?",
+    "hero.h1a": "¿Le estás poniendo",
+    "hero.h1b": "el precio correcto a tu torta?",
     "hero.sub": "Sube la foto de tu receta, dinos tu país — y en segundos tienes el costo real, el precio que deberías cobrar, y el desglose completo. Con precios de supermercados donde tú vives.",
     "hero.cta1": "Calcular mi primera receta gratis →",
     "hero.cta2": "Ver cómo funciona",
@@ -182,8 +182,8 @@ const I18N = {
     "nav.cta": "Calculate my first recipe →",
 
     "hero.tag": "✦ Made for bakers like you",
-    "hero.h1a": "Do you actually know what",
-    "hero.h1b": "your cake costs to make?",
+    "hero.h1a": "Are you pricing",
+    "hero.h1b": "your cake right?",
     "hero.sub": "Upload a photo of your recipe, tell us your country — and get your real cost, your selling price, and a full breakdown in seconds. With actual supermarket prices from where you live.",
     "hero.cta1": "Calculate my first recipe free →",
     "hero.cta2": "See how it works",

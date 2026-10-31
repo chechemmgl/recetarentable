@@ -464,3 +464,4 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.
   .reveal { opacity: 1; transform: none; }
   .fade { opacity: 1; }
 }
+.plan__price--soon { font-size: var(--text-xl); }
